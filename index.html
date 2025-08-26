@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jekora Ventures Limited - Professional waste management and environmental solutions in Ghana">
+    <title>Jekora Ventures Limited - Environmental Solutions</title>
+
+    <!-- Tailwind CSS CDN for quick styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Custom styles for brand consistency */
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+        }
+        
+        .hero-pattern {
+            background-image: radial-gradient(circle at 25px 25px, rgba(255, 255, 255, .1) 2px, transparent 0), radial-gradient(circle at 75px 75px, rgba(255, 255, 255, .05) 2px, transparent 0);
+            background-size: 100px 100px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">J</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900">Jekora Ventures</h1>
+                        <p class="text-sm text-gray-600">Environmental Solutions</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-900 hover:text-green-600 transition duration-200">Home</a>
+                    <a href="/about/" class="text-gray-700 hover:text-green-600 transition duration-200">About</a>
+                    <a href="/services/" class="text-gray-700 hover:text-green-600 transition duration-200">Services</a>
+                    <a href="/blog/" class="text-gray-700 hover:text-green-600 transition duration-200">Blog</a>
+                    <a href="/contact/" class="text-gray-700 hover:text-green-600 transition duration-200">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-green-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden pb-4">
+                <a href="/" class="block py-2 text-gray-900 hover:text-green-600">Home</a>
+                <a href="/about/" class="block py-2 text-gray-700 hover:text-green-600">About</a>
+                <a href="/services/" class="block py-2 text-gray-700 hover:text-green-600">Services</a>
+                <a href="/blog/" class="block py-2 text-gray-700 hover:text-green-600">Blog</a>
+                <a href="/contact/" class="block py-2 text-gray-700 hover:text-green-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="gradient-bg hero-pattern text-white py-20">
+        <div class="max-w-6xl mx-auto px-4 text-center fade-in">
+            <h2 class="text-5xl font-bold mb-6">Professional Waste Management Solutions</h2>
+            <p class="text-xl mb-8 text-green-100">Transforming waste into valuable resources for a sustainable future in Ghana</p>
+            <div class="space-x-4">
+                <a href="/services/" class="bg-white text-green-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-200 inline-block">Our Services</a>
+                <a href="/contact/" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-700 transition duration-200 inline-block">Get Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12 fade-in">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">What We Do</h3>
+                <p class="text-gray-600 text-lg">Comprehensive environmental solutions for businesses and communities</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Waste Collection -->
+                <div class="service-card bg-gray-50 p-6 rounded-lg text-center hover:shadow-lg">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Waste Collection</h4>
+                    <p class="text-gray-600">Regular and reliable waste collection services for residential and commercial properties.</p>
+                </div>
+
+                <!-- Recycling -->
+                <div class="service-card bg-gray-50 p-6 rounded-lg text-center hover:shadow-lg">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Recycling Programs</h4>
+                    <p class="text-gray-600">Advanced recycling solutions to minimize waste and maximize resource recovery.</p>
+                </div>
+
+                <!-- Composting -->
+                <div class="service-card bg-gray-50 p-6 rounded-lg text-center hover:shadow-lg">
+                    <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-2">Organic Composting</h4>
+                    <p class="text-gray-600">Converting organic waste into valuable compost through our WaFo initiative.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA Section -->
+    <section class="bg-gray-900 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="text-3xl font-bold mb-4">Ready to Transform Your Waste Management?</h3>
+            <p class="text-gray-300 text-lg mb-8">Contact us for a consultation and custom solution for your business.</p>
+            <a href="/contact/" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition duration-200">Get Started Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Jekora Ventures Limited</h4>
+                    <p class="text-gray-400">Professional waste management and environmental solutions for a sustainable Ghana.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="text-gray-400 space-y-2">
+                        <li>Waste Collection</li>
+                        <li>Recycling Programs</li>
+                        <li>Organic Composting</li>
+                        <li>Environmental Consulting</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <p class="text-gray-400">Accra, Ghana</p>
+                    <p class="text-gray-400">Email: info@jekoraventures.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Jekora Ventures Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for mobile menu -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>
