@@ -1,0 +1,125 @@
+/* ============================================
+   JEKORA VENTURES - MAIN STYLESHEET
+   ============================================ */
+
+/* WASTE MANAGEMENT COLOR VARIABLES */
+:root {
+  /* Standard Waste Management Colors */
+  --organic: #10b981; /* Green for organic/composting */
+  --plastic: #3b82f6; /* Blue for plastic recycling */
+  --paper: #92400e; /* Brown for paper recycling */
+  --general: #6b7280; /* Gray for general waste */
+  --glass: #06b6d4; /* Cyan for glass recovery */
+
+  /* Light variations */
+  --organic-light: #34d399;
+  --plastic-light: #60a5fa;
+  --paper-light: #d97706;
+  --general-light: #9ca3af;
+  --glass-light: #22d3ee;
+
+  /* Background tints */
+  --organic-bg: #ecfdf5;
+  --plastic-bg: #eff6ff;
+  --paper-bg: #fef3c7;
+  --general-bg: #f9fafb;
+  --glass-bg: #ecfeff;
+}
+
+/* Dark mode adjustments */
+.dark {
+  --organic-bg: rgba(16, 185, 129, 0.1);
+  --plastic-bg: rgba(59, 130, 246, 0.1);
+  --paper-bg: rgba(146, 64, 14, 0.15);
+  --general-bg: rgba(107, 114, 128, 0.1);
+  --glass-bg: rgba(6, 182, 212, 0.1);
+}
+
+/* COLOR UTILITY CLASSES */
+.theme-organic {
+  color: var(--organic);
+}
+.theme-plastic {
+  color: var(--plastic);
+}
+.theme-paper {
+  color: var(--paper);
+}
+.theme-general {
+  color: var(--general);
+}
+.theme-glass {
+  color: var(--glass);
+}
+
+.bg-theme-organic {
+  background-color: var(--organic);
+}
+.bg-theme-plastic {
+  background-color: var(--plastic);
+}
+.bg-theme-paper {
+  background-color: var(--paper);
+}
+.bg-theme-general {
+  background-color: var(--general);
+}
+.bg-theme-glass {
+  background-color: var(--glass);
+}
+
+/* GRADIENT BACKGROUNDS */
+.gradient-bg {
+  background: linear-gradient(135deg, var(--organic) 0%, #047857 100%);
+}
+
+.hero-pattern {
+  background-image: radial-gradient(
+      circle at 25px 25px,
+      rgba(255, 255, 255, 0.1) 2px,
+      transparent 0
+    ),
+    radial-gradient(
+      circle at 75px 75px,
+      rgba(255, 255, 255, 0.05) 2px,
+      transparent 0
+    );
+  background-size: 100px 100px;
+}
+
+/* ANIMATIONS */
+.fade-in {
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SMOOTH TRANSITIONS */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* HOVER EFFECTS */
+.hover-lift:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  .fade-in {
+    animation: none !important;
+    transition: none !important;
+  }
+}
