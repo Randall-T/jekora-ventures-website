@@ -1,15 +1,15 @@
 /* ============================================
-   JEKORA VENTURES - MAIN STYLESHEET
+   COMPLETE THEME SYSTEM - FIXED VERSION
    ============================================ */
 
 /* WASTE MANAGEMENT COLOR VARIABLES */
 :root {
-  /* Standard Waste Management Colors */
-  --organic: #10b981; /* Green for organic/composting */
-  --plastic: #3b82f6; /* Blue for plastic recycling */
-  --paper: #92400e; /* Brown for paper recycling */
-  --general: #6b7280; /* Gray for general waste */
-  --glass: #06b6d4; /* Cyan for glass recovery */
+  /* Waste Management Colors */
+  --organic: #10b981;
+  --plastic: #3b82f6;
+  --paper: #92400e;
+  --general: #6b7280;
+  --glass: #06b6d4;
 
   /* Light variations */
   --organic-light: #34d399;
@@ -17,60 +17,280 @@
   --paper-light: #d97706;
   --general-light: #9ca3af;
   --glass-light: #22d3ee;
+}
 
-  /* Background tints */
+/* ============================================
+   LIGHT MODE (DEFAULT)
+   ============================================ */
+:root {
   --organic-bg: #ecfdf5;
   --plastic-bg: #eff6ff;
   --paper-bg: #fef3c7;
   --general-bg: #f9fafb;
   --glass-bg: #ecfeff;
+
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+
+  --bg-body: #f9fafb;
+  --bg-nav: #ffffff;
+  --bg-footer: #1f2937;
+  --bg-card: #ffffff;
+  --bg-section: #ffffff;
+  --bg-alt: #f3f4f6;
+
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.15);
+  --border: #e5e7eb;
 }
 
-/* Dark mode adjustments */
+/* ============================================
+   DARK MODE - COMPLETE OVERRIDE
+   ============================================ */
 .dark {
-  --organic-bg: rgba(16, 185, 129, 0.1);
-  --plastic-bg: rgba(59, 130, 246, 0.1);
-  --paper-bg: rgba(146, 64, 14, 0.15);
-  --general-bg: rgba(107, 114, 128, 0.1);
-  --glass-bg: rgba(6, 182, 212, 0.1);
+  --organic-bg: rgba(16, 185, 129, 0.15) !important;
+  --plastic-bg: rgba(59, 130, 246, 0.15) !important;
+  --paper-bg: rgba(146, 64, 14, 0.2) !important;
+  --general-bg: rgba(107, 114, 128, 0.15) !important;
+  --glass-bg: rgba(6, 182, 212, 0.15) !important;
+
+  --text-primary: #f9fafb !important;
+  --text-secondary: #d1d5db !important;
+  --text-muted: #9ca3af !important;
+
+  --bg-body: #0f172a !important;
+  --bg-nav: #1e293b !important;
+  --bg-footer: #020617 !important;
+  --bg-card: #1f2937 !important;
+  --bg-section: #111827 !important;
+  --bg-alt: #374151 !important;
+
+  --shadow: rgba(0, 0, 0, 0.3) !important;
+  --shadow-lg: rgba(0, 0, 0, 0.5) !important;
+  --border: rgba(255, 255, 255, 0.1) !important;
 }
 
-/* COLOR UTILITY CLASSES */
+/* ============================================
+   FORCE OVERRIDE TAILWIND CLASSES
+   ============================================ */
+
+/* BODY AND BACKGROUNDS */
+body {
+  background-color: var(--bg-body) !important;
+  color: var(--text-primary) !important;
+}
+
+/* NAVIGATION */
+nav {
+  background-color: var(--bg-nav) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* TEXT COLORS - Override ALL Tailwind text classes */
+.text-gray-900,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-700,
+.text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.text-gray-500,
+.text-gray-400 {
+  color: var(--text-muted) !important;
+}
+
+/* WHITE TEXT - Override specifically */
+.text-white {
+  color: #ffffff !important;
+}
+
+/* BACKGROUND OVERRIDES */
+.bg-white {
+  background-color: var(--bg-card) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--bg-body) !important;
+}
+
+.bg-gray-100 {
+  background-color: var(--bg-alt) !important;
+}
+
+.bg-gray-800 {
+  background-color: var(--bg-footer) !important;
+}
+
+.bg-gray-900 {
+  background-color: var(--bg-section) !important;
+}
+
+.bg-gray-950 {
+  background-color: #020617 !important;
+}
+
+/* CARD BACKGROUNDS */
+.service-card,
+.stats-card,
+.team-card,
+.approach-card {
+  box-shadow: 0 1px 3px var(--shadow) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* SERVICE CARD SPECIFIC BACKGROUNDS */
+.service-card-organic {
+  background-color: var(--organic-bg) !important;
+  border-top: 4px solid var(--organic) !important;
+}
+
+.service-card-plastic {
+  background-color: var(--plastic-bg) !important;
+  border-top: 4px solid var(--plastic) !important;
+}
+
+.service-card-paper {
+  background-color: var(--paper-bg) !important;
+  border-top: 4px solid var(--paper) !important;
+}
+
+.service-card-general {
+  background-color: var(--general-bg) !important;
+  border-top: 4px solid var(--general) !important;
+}
+
+.service-card-glass {
+  background-color: var(--glass-bg) !important;
+  border-top: 4px solid var(--glass) !important;
+}
+
+/* ICON CONTAINERS */
+.icon-organic {
+  background-color: var(--organic-bg) !important;
+  color: var(--organic) !important;
+  border: 2px solid var(--organic) !important;
+}
+
+.icon-plastic {
+  background-color: var(--plastic-bg) !important;
+  color: var(--plastic) !important;
+  border: 2px solid var(--plastic) !important;
+}
+
+.icon-paper {
+  background-color: var(--paper-bg) !important;
+  color: var(--paper) !important;
+  border: 2px solid var(--paper) !important;
+}
+
+.icon-general {
+  background-color: var(--general-bg) !important;
+  color: var(--general) !important;
+  border: 2px solid var(--general) !important;
+}
+
+.icon-glass {
+  background-color: var(--glass-bg) !important;
+  color: var(--glass) !important;
+  border: 2px solid var(--glass) !important;
+}
+
+/* THEME COLOR UTILITIES */
 .theme-organic {
-  color: var(--organic);
+  color: var(--organic) !important;
 }
 .theme-plastic {
-  color: var(--plastic);
+  color: var(--plastic) !important;
 }
 .theme-paper {
-  color: var(--paper);
+  color: var(--paper) !important;
 }
 .theme-general {
-  color: var(--general);
+  color: var(--general) !important;
 }
 .theme-glass {
-  color: var(--glass);
+  color: var(--glass) !important;
 }
 
 .bg-theme-organic {
-  background-color: var(--organic);
+  background-color: var(--organic) !important;
 }
 .bg-theme-plastic {
-  background-color: var(--plastic);
+  background-color: var(--plastic) !important;
 }
 .bg-theme-paper {
-  background-color: var(--paper);
+  background-color: var(--paper) !important;
 }
 .bg-theme-general {
-  background-color: var(--general);
+  background-color: var(--general) !important;
 }
 .bg-theme-glass {
-  background-color: var(--glass);
+  background-color: var(--glass) !important;
 }
 
-/* GRADIENT BACKGROUNDS */
+/* ============================================
+   THEME TOGGLE SWITCH
+   ============================================ */
+.theme-toggle {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: #374151;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: #4b5563;
+}
+
+.theme-toggle.dark {
+  background-color: var(--organic);
+}
+
+.theme-toggle.dark:hover {
+  background-color: #059669;
+}
+
+.theme-toggle-slider {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle.dark .theme-toggle-slider {
+  transform: translateX(28px);
+}
+
+/* ============================================
+   GRADIENTS AND PATTERNS
+   ============================================ */
 .gradient-bg {
-  background: linear-gradient(135deg, var(--organic) 0%, #047857 100%);
+  background: linear-gradient(
+    135deg,
+    var(--organic) 0%,
+    #047857 100%
+  ) !important;
 }
 
 .hero-pattern {
@@ -87,7 +307,80 @@
   background-size: 100px 100px;
 }
 
-/* ANIMATIONS */
+/* ============================================
+   HOVER EFFECTS
+   ============================================ */
+.service-card:hover,
+.stats-card:hover,
+.approach-card:hover,
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px var(--shadow-lg) !important;
+  transition: all 0.3s ease;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn-primary {
+  background: var(--organic) !important;
+  color: white !important;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+.btn-primary:hover {
+  background: #059669 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+}
+
+.btn-secondary {
+  background: transparent !important;
+  color: var(--organic) !important;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid var(--organic) !important;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-secondary:hover {
+  background: var(--organic) !important;
+  color: white !important;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   NAVIGATION LINKS
+   ============================================ */
+.nav-link {
+  transition: all 0.3s ease;
+  color: var(--text-secondary) !important;
+}
+
+.nav-link:hover {
+  color: var(--organic) !important;
+}
+
+.nav-link.active {
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 .fade-in {
   animation: fadeIn 0.8s ease-in;
 }
@@ -103,19 +396,44 @@
   }
 }
 
-/* SMOOTH TRANSITIONS */
+/* ============================================
+   SMOOTH TRANSITIONS
+   ============================================ */
 * {
-  transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease,
+    border-color 0.4s ease, box-shadow 0.4s ease !important;
 }
 
-/* HOVER EFFECTS */
-.hover-lift:hover {
-  transform: translateY(-5px);
-  transition: transform 0.3s ease;
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+  .theme-toggle {
+    width: 50px;
+    height: 25px;
+  }
+
+  .theme-toggle-slider {
+    width: 19px;
+    height: 19px;
+    top: 2px;
+    left: 2px;
+    font-size: 10px;
+  }
+
+  .theme-toggle.dark .theme-toggle-slider {
+    transform: translateX(23px);
+  }
 }
 
-/* ACCESSIBILITY */
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+.theme-toggle:focus {
+  outline: 2px solid var(--organic);
+  outline-offset: 2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   .fade-in {

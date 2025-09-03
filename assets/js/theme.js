@@ -15,7 +15,7 @@ class ThemeManager {
   // Safe localStorage access
   getStoredTheme() {
     try {
-      return localStorage.getItem("theme");
+      return localStorage.getItem("jekora-theme");
     } catch (error) {
       console.warn("localStorage not available:", error);
       return null;
@@ -24,7 +24,7 @@ class ThemeManager {
 
   setStoredTheme(theme) {
     try {
-      localStorage.setItem("theme", theme);
+      localStorage.setItem("jekora-theme", theme);
     } catch (error) {
       console.warn("localStorage not available:", error);
     }
@@ -48,66 +48,151 @@ class ThemeManager {
     const systemTheme = this.getSystemTheme();
     const currentTheme = storedTheme || systemTheme;
 
-    // Apply theme on page load
-    this.applyTheme(currentTheme);
+    // Apply theme immediately to prevent flash
+    this.applyTheme(currentTheme, false);
 
     // Add event listeners
     this.addEventListeners();
 
     // Listen for system theme changes
     this.watchSystemTheme();
+
+    console.log(
+      `✅ Theme initialized: ${currentTheme} (stored: ${storedTheme}, system: ${systemTheme})`
+    );
   }
 
-  // Apply theme to DOM
-  applyTheme(theme) {
-    const isDark = theme === "dark";
+  // Apply theme to DOM with animation control
 
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-      this.themeToggle?.classList.add("dark");
-      this.themeToggleMobile?.classList.add("dark");
-      if (this.themeIcon) this.themeIcon.textContent = "☀️";
-      if (this.themeIconMobile) this.themeIconMobile.textContent = "☀️";
-    } else {
-      document.documentElement.classList.remove("dark");
-      this.themeToggle?.classList.remove("dark");
-      this.themeToggleMobile?.classList.remove("dark");
-      if (this.themeIcon) this.themeIcon.textContent = "🌙";
-      if (this.themeIconMobile) this.themeIconMobile.textContent = "🌙";
+  applyTheme(theme, animate = true) {
+    const isDark = theme === "dark";
+    const html = document.documentElement;
+
+    // Disable transitions temporarily if requested
+    if (!animate) {
+      html.classList.add("theme-switching");
+      setTimeout(() => html.classList.remove("theme-switching"), 100);
     }
+
+    // Apply or remove dark class
+    if (isDark) {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+
+    // Update toggle switches
+    this.updateToggleUI(isDark);
+
+    // Force a repaint to ensure changes apply
+    setTimeout(() => {
+      document.body.style.display = "none";
+      document.body.offsetHeight; // Trigger reflow
+      document.body.style.display = "";
+    }, 50);
+  }
+
+  // Update toggle UI elements
+  updateToggleUI(isDark) {
+    // Desktop toggle
+    if (this.themeToggle) {
+      if (isDark) {
+        this.themeToggle.classList.add("dark");
+      } else {
+        this.themeToggle.classList.remove("dark");
+      }
+    }
+
+    // Mobile toggle
+    if (this.themeToggleMobile) {
+      if (isDark) {
+        this.themeToggleMobile.classList.add("dark");
+      } else {
+        this.themeToggleMobile.classList.remove("dark");
+      }
+    }
+
+    // Update icons
+    const newIcon = isDark ? "☀️" : "🌙";
+    if (this.themeIcon) this.themeIcon.textContent = newIcon;
+    if (this.themeIconMobile) this.themeIconMobile.textContent = newIcon;
   }
 
   // Toggle between themes
   toggleTheme() {
-    const isDark = document.documentElement.classList.contains("dark");
-    const newTheme = isDark ? "light" : "dark";
+    const html = document.documentElement;
+    const isDarkNow = html.classList.contains("dark");
+    const newTheme = isDarkNow ? "light" : "dark";
 
-    this.applyTheme(newTheme);
+    console.log(
+      `🔄 Toggling theme from ${isDarkNow ? "dark" : "light"} to ${newTheme}`
+    );
+
+    this.applyTheme(newTheme, true);
     this.setStoredTheme(newTheme);
   }
 
   // Add event listeners
   addEventListeners() {
-    this.themeToggle?.addEventListener("click", () => this.toggleTheme());
-    this.themeToggleMobile?.addEventListener("click", () => this.toggleTheme());
+    if (this.themeToggle) {
+      this.themeToggle.addEventListener("click", () => this.toggleTheme());
+    }
+
+    if (this.themeToggleMobile) {
+      this.themeToggleMobile.addEventListener("click", () =>
+        this.toggleTheme()
+      );
+    }
   }
 
   // Watch for system theme changes
   watchSystemTheme() {
     try {
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", (e) => {
-          // Only auto-switch if user hasn't set a preference
-          if (!this.getStoredTheme()) {
-            this.applyTheme(e.matches ? "dark" : "light");
-          }
-        });
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+      mediaQuery.addEventListener("change", (e) => {
+        // Only auto-switch if user hasn't set a manual preference
+        const storedTheme = this.getStoredTheme();
+        if (!storedTheme) {
+          const newTheme = e.matches ? "dark" : "light";
+          console.log(`🔄 System theme changed to: ${newTheme}`);
+          this.applyTheme(newTheme, true);
+        }
+      });
     } catch (error) {
       console.warn("matchMedia not supported:", error);
     }
   }
+
+  // Public method to force theme
+  setTheme(theme) {
+    if (theme === "dark" || theme === "light") {
+      this.applyTheme(theme, true);
+      this.setStoredTheme(theme);
+    }
+  }
+
+  // Get current theme
+  getCurrentTheme() {
+    return document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+  }
 }
+
+// ============================================
+// ADDITIONAL THEME UTILITIES
+// ============================================
+
+// Add CSS class to prevent transitions during theme switch
+const style = document.createElement("style");
+style.textContent = `
+    .theme-switching * {
+        transition: none !important;
+        animation: none !important;
+    }
+`;
+document.head.appendChild(style);
 
 // ============================================
 // INITIALIZE ON DOM LOAD
@@ -116,5 +201,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize theme system
   window.themeManager = new ThemeManager();
 
-  console.log("✅ Theme system initialized");
+  // Add debugging helpers (remove in production)
+  window.setTheme = (theme) => window.themeManager.setTheme(theme);
+  window.getCurrentTheme = () => window.themeManager.getCurrentTheme();
+  window.toggleTheme = () => window.themeManager.toggleTheme();
+
+  console.log("✅ Theme system fully initialized");
+  console.log(
+    'Debug commands: setTheme("dark"), setTheme("light"), toggleTheme(), getCurrentTheme()'
+  );
 });
