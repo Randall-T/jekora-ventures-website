@@ -18,127 +18,7 @@
   </head>
   <body class="bg-gray-50 dark:bg-gray-900">
     <!-- Navigation -->
-    <nav class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="flex justify-between items-center py-4">
-          <!-- Logo -->
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-10 h-10 bg-theme-organic rounded-full flex items-center justify-center"
-            >
-              <span class="text-white font-bold text-xl">J</span>
-            </div>
-            <div>
-              <h1 class="text-xl font-bold text-gray-900 dark:text-white">
-                Jekora Ventures
-              </h1>
-              <p class="text-sm text-gray-600 dark:text-gray-300">
-                Environmental Solutions
-              </p>
-            </div>
-          </div>
-
-          <!-- Desktop Menu -->
-          <div class="hidden md:flex items-center space-x-8">
-            <a href="/" class="nav-link text-gray-700 dark:text-gray-300"
-              >Home</a
-            >
-            <a href="/about/" class="nav-link text-gray-900 dark:text-white"
-              >About</a
-            >
-            <a
-              href="/services/"
-              class="nav-link text-gray-700 dark:text-gray-300"
-              >Services</a
-            >
-            <a href="/media/" class="nav-link text-gray-700 dark:text-gray-300"
-              >Media</a
-            >
-            <a href="/blog/" class="nav-link text-gray-700 dark:text-gray-300"
-              >Blog</a
-            >
-            <a
-              href="/contact/"
-              class="nav-link text-gray-700 dark:text-gray-300"
-              >Contact</a
-            >
-
-            <!-- Theme Toggle -->
-            <div class="theme-toggle" id="theme-toggle">
-              <div class="theme-toggle-slider">
-                <span id="theme-icon">🌙</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Mobile Menu Controls -->
-          <div class="md:hidden flex items-center space-x-3">
-            <div class="theme-toggle" id="theme-toggle-mobile">
-              <div class="theme-toggle-slider">
-                <span id="theme-icon-mobile">🌙</span>
-              </div>
-            </div>
-            <button
-              id="mobile-menu-button"
-              class="text-gray-700 dark:text-gray-300 hover:text-green-600 p-2"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div
-          id="mobile-menu"
-          class="md:hidden hidden pb-4 border-t border-gray-200 dark:border-gray-700"
-        >
-          <div class="pt-4 space-y-2">
-            <a
-              href="/"
-              class="block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
-              >Home</a
-            >
-            <a
-              href="/about/"
-              class="block py-2 px-2 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
-              >About</a
-            >
-            <a
-              href="/services/"
-              class="block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
-              >Services</a
-            >
-            <a
-              href="/media/"
-              class="block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
-              >Media</a
-            >
-            <a
-              href="/blog/"
-              class="block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
-              >Blog</a
-            >
-            <a
-              href="/contact/"
-              class="block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
-              >Contact</a
-            >
-          </div>
-        </div>
-      </div>
-    </nav>
+    <div id="header-placeholder"></div>
 
     <!-- Hero Section -->
     <section class="gradient-bg hero-pattern text-white py-20">
@@ -252,6 +132,11 @@
 
       <!-- Mission & Vision -->
       <section class="mb-16">
+        <h3
+          class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center"
+        >
+          Our Purpose
+        </h3>
         <div class="grid md:grid-cols-2 gap-8">
           <!-- Mission (Organic Green) -->
           <div
@@ -275,11 +160,208 @@
                   ></path>
                 </svg>
               </div>
+              <h4 class="text-2xl font-bold text-gray-900 dark:text-white">
+                Our Mission
+              </h4>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 text-lg">
+              <strong>[PLACEHOLDER: Mission Statement]</strong> - To provide
+              innovative, reliable, and sustainable waste management solutions
+              that protect Ghana's environment while creating economic
+              opportunities for our communities.
+            </p>
+          </div>
+
+          <!-- Vision (Plastic Blue) -->
+          <div
+            class="service-card-plastic dark:bg-blue-900/20 p-8 rounded-lg border-l-4 border-blue-500"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 bg-theme-plastic rounded-full flex items-center justify-center mr-4"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  ></path>
+                </svg>
+              </div>
+              <h4 class="text-2xl font-bold text-gray-900 dark:text-white">
+                Our Vision
+              </h4>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 text-lg">
+              <strong>[PLACEHOLDER: Vision Statement]</strong> - To be West
+              Africa's leading environmental solutions provider, setting the
+              standard for sustainable waste management and resource recovery
+              across the region.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Approach -->
+      <section class="mb-16">
+        <h3
+          class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center"
+        >
+          Our Approach
+        </h3>
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Innovation (Green) -->
+          <div
+            class="approach-card text-center service-card-organic dark:bg-green-900/20 p-6 rounded-lg border-t-4 border-green-500"
+          >
+            <div
+              class="w-16 h-16 icon-organic rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                ></path>
+              </svg>
+            </div>
+            <h4
+              class="text-xl font-semibold mb-3 text-gray-900 dark:text-white"
+            >
+              Innovation First
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              We continuously adopt new technologies and methods to improve
+              efficiency and environmental impact.
+            </p>
+          </div>
+
+          <!-- Community Partnership (Blue) -->
+          <div
+            class="approach-card text-center service-card-plastic dark:bg-blue-900/20 p-6 rounded-lg border-t-4 border-blue-500"
+          >
+            <div
+              class="w-16 h-16 icon-plastic rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </div>
+            <h4
+              class="text-xl font-semibold mb-3 text-gray-900 dark:text-white"
+            >
+              Community Partnership
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              We work closely with communities to create sustainable solutions
+              that benefit everyone.
+            </p>
+          </div>
+
+          <!-- Environmental Care (Brown) -->
+          <div
+            class="approach-card text-center service-card-paper dark:bg-amber-900/20 p-6 rounded-lg border-t-4 border-amber-700"
+          >
+            <div
+              class="w-16 h-16 icon-paper rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
+              </svg>
+            </div>
+            <h4
+              class="text-xl font-semibold mb-3 text-gray-900 dark:text-white"
+            >
+              Environmental Care
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              Every decision we make prioritizes long-term environmental health
+              and sustainability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service Areas -->
+      <section class="mb-16 bg-gray-100 dark:bg-gray-800 rounded-lg p-8">
+        <h3
+          class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center"
+        >
+          Where We Serve
+        </h3>
+        <div class="max-w-4xl mx-auto">
+          <p class="text-lg text-gray-700 dark:text-gray-300 mb-6 text-center">
+            <strong>[PLACEHOLDER: Service Areas]</strong> - Specify your service
+            areas in Ghana - Greater Accra Region, specific districts, expansion
+            plans, coverage areas for different services.
+          </p>
+          <div class="grid md:grid-cols-3 gap-4">
+            <div
+              class="stats-card bg-white dark:bg-gray-700 p-4 rounded-lg shadow border-l-4 border-green-500"
+            >
+              <h4 class="font-semibold text-gray-900 dark:text-white">
+                Primary Coverage
+              </h4>
+              <p class="text-gray-600 dark:text-gray-400">
+                [Accra Metropolitan Area]
+              </p>
+            </div>
+            <div
+              class="stats-card bg-white dark:bg-gray-700 p-4 rounded-lg shadow border-l-4 border-blue-500"
+            >
+              <h4 class="font-semibold text-gray-900 dark:text-white">
+                Extended Service
+              </h4>
+              <p class="text-gray-600 dark:text-gray-400">
+                [Greater Accra Region]
+              </p>
+            </div>
+            <div
+              class="stats-card bg-white dark:bg-gray-700 p-4 rounded-lg shadow border-l-4 border-amber-700"
+            >
               <h4 class="font-semibold text-gray-900 dark:text-white">
                 Specialized Projects
               </h4>
               <p class="text-gray-600 dark:text-gray-400">
-                [Special project areas]
+                [Nationwide Consultation]
               </p>
             </div>
           </div>
@@ -541,52 +623,14 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-8">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="grid md:grid-cols-3 gap-8">
-          <div>
-            <div class="flex items-center space-x-3 mb-4">
-              <div
-                class="w-8 h-8 bg-theme-organic rounded-full flex items-center justify-center"
-              >
-                <span class="text-white font-bold text-sm">J</span>
-              </div>
-              <h4 class="text-lg font-semibold">Jekora Ventures Limited</h4>
-            </div>
-            <p class="text-gray-400 dark:text-gray-500">
-              Professional waste management and environmental solutions for a
-              sustainable Ghana.
-            </p>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Our Services</h4>
-            <ul class="text-gray-400 dark:text-gray-500 space-y-2">
-              <li>• Waste Collection</li>
-              <li>• Plastic Recycling</li>
-              <li>• Organic Composting</li>
-              <li>• Paper Recycling</li>
-              <li>• Glass Recovery</li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
-            <div class="text-gray-400 dark:text-gray-500 space-y-2">
-              <p>📍 [Your Address], Accra, Ghana</p>
-              <p>📞 [Your Phone Number]</p>
-              <p>✉️ info@jekoraventures.com</p>
-            </div>
-          </div>
-        </div>
-        <div
-          class="border-t border-gray-700 dark:border-gray-800 mt-8 pt-6 text-center text-gray-400 dark:text-gray-500"
-        >
-          <p>&copy; 2025 Jekora Ventures Limited. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <!-- External Scripts -->
     <script src="../assets/js/theme.js"></script>
     <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/components.js"></script>
+    <script>
+      console.log("Testing component loading ...");
+    </script>
   </body>
 </html>

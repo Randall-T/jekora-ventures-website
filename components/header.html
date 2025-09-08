@@ -1,0 +1,142 @@
+<!-- Shared Header Component -->
+<nav class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-between items-center py-4">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <div
+          class="w-10 h-10 bg-theme-organic rounded-full flex items-center justify-center"
+        >
+          <span class="text-white font-bold text-xl">J</span>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold text-gray-900 dark:text-white">
+            Jekora Ventures
+          </h1>
+          <p class="text-sm text-gray-600 dark:text-gray-300">
+            Environmental Solutions
+          </p>
+        </div>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a
+          href="/"
+          class="nav-link text-gray-700 dark:text-gray-300"
+          data-page="home"
+          >Home</a
+        >
+        <a
+          href="/about/"
+          class="nav-link text-gray-700 dark:text-gray-300"
+          data-page="about"
+          >About</a
+        >
+        <a
+          href="/services/"
+          class="nav-link text-gray-700 dark:text-gray-300"
+          data-page="services"
+          >Services</a
+        >
+        <a
+          href="/media/"
+          class="nav-link text-gray-700 dark:text-gray-300"
+          data-page="media"
+          >Media</a
+        >
+        <a
+          href="/blog/"
+          class="nav-link text-gray-700 dark:text-gray-300"
+          data-page="blog"
+          >Blog</a
+        >
+        <a
+          href="/contact/"
+          class="nav-link text-gray-700 dark:text-gray-300"
+          data-page="contact"
+          >Contact</a
+        >
+
+        <!-- Theme Toggle -->
+        <div class="theme-toggle" id="theme-toggle">
+          <div class="theme-toggle-slider">
+            <span id="theme-icon">🌙</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Controls -->
+      <div class="md:hidden flex items-center space-x-3">
+        <div class="theme-toggle" id="theme-toggle-mobile">
+          <div class="theme-toggle-slider">
+            <span id="theme-icon-mobile">🌙</span>
+          </div>
+        </div>
+        <button
+          id="mobile-menu-button"
+          class="text-gray-700 dark:text-gray-300 hover:text-green-600 p-2"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="md:hidden hidden pb-4 border-t border-gray-200 dark:border-gray-700"
+    >
+      <div class="pt-4 space-y-2">
+        <a
+          href="/"
+          class="mobile-nav-link block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
+          data-page="home"
+          >Home</a
+        >
+        <a
+          href="/about/"
+          class="mobile-nav-link block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
+          data-page="about"
+          >About</a
+        >
+        <a
+          href="/services/"
+          class="mobile-nav-link block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
+          data-page="services"
+          >Services</a
+        >
+        <a
+          href="/media/"
+          class="mobile-nav-link block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
+          data-page="media"
+          >Media</a
+        >
+        <a
+          href="/blog/"
+          class="mobile-nav-link block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
+          data-page="blog"
+          >Blog</a
+        >
+        <a
+          href="/contact/"
+          class="mobile-nav-link block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
+          data-page="contact"
+          >Contact</a
+        >
+      </div>
+    </div>
+  </div>
+</nav>
