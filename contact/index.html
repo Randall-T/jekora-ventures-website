@@ -42,15 +42,15 @@
             Send Us a Message
           </h3>
           <!-- 
-            This form is now connected to your Google Form.
-            Submissions will appear in your Google Sheet.
+            NOTE: This is a simplified test form. 
+            The target="hidden_iframe" and the custom script have been removed.
+            This form WILL redirect to the Google Forms "Thank You" page upon submission.
            -->
           <form
-            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd6XPQDrLs-zOPsrseYggyD8wKS5qsG5oTV9T-VaYGG7Dcsuw/formResponse"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSd6XPQDrLs-zOPsrseYggyD8wKS5qsG5oTV9T-VaYGG7Dcsuw/formResponse"
             method="POST"
             class="space-y-6"
             id="contact-form"
-            target="hidden_iframe"
           >
             <!-- Full Name -->
             <div>
@@ -91,13 +91,12 @@
               <label
                 for="phone"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                >Phone Number</label
+                >Phone Number (Optional)</label
               >
               <input
                 type="tel"
                 name="entry.1604461624"
                 id="phone"
-                required
                 placeholder="024 123 4567"
                 class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
               />
@@ -112,7 +111,6 @@
               >
               <select
                 id="service"
-                required
                 name="entry.884684946"
                 class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
               >
@@ -151,14 +149,7 @@
                 Send Message
               </button>
             </div>
-            <p id="form-status" class="text-center mt-4 h-6"></p>
           </form>
-          <!-- Hidden iframe to handle form submission without redirect -->
-          <iframe
-            name="hidden_iframe"
-            id="hidden_iframe"
-            style="display: none"
-          ></iframe>
         </div>
 
         <!-- Contact Information Column -->
@@ -226,7 +217,6 @@
               </p>
             </div>
           </div>
-
           <div>
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Business Hours
@@ -246,13 +236,13 @@
     <section class="mt-8">
       <div class="w-full">
         <iframe
-          src="https://maps.google.com/maps?q=Jekora%20Ventures%20Limited,Asylum%20Down,Accra,Ghana&t=&z=16&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="450"
           style="border: 0"
-          allowfullscreen=""
           loading="lazy"
+          allowfullscreen
           referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Jekora%20Ventures%20Limited,Asylum%20Down,Accra,Ghana&t=&z=16&ie=UTF8&iwloc=&output=embed"
         ></iframe>
       </div>
     </section>
@@ -264,38 +254,5 @@
     <script src="../assets/js/theme.js"></script>
     <script src="../assets/js/navigation.js"></script>
     <script src="../assets/js/components.js"></script>
-
-    <!-- Page-specific script for form handling -->
-    <script>
-      const form = document.getElementById("contact-form");
-      const status = document.getElementById("form-status");
-      const submitButton = document.getElementById("submit-button");
-      let formSubmitted = false;
-
-      form.addEventListener("submit", () => {
-        // Show submitting message and disable button
-        status.textContent = "Sending...";
-        status.className = "text-center mt-4 h-6 text-blue-500";
-        submitButton.disabled = true;
-        submitButton.textContent = "Submitting...";
-        formSubmitted = true;
-      });
-
-      // Listen for the iframe to load after submission
-      const hiddenIframe = document.getElementById("hidden_iframe");
-      hiddenIframe.addEventListener("load", () => {
-        if (formSubmitted) {
-          // Show success message and reset the form
-          status.textContent = "Thank you! Your message has been sent.";
-          status.className = "text-center mt-4 h-6 text-green-500";
-          form.reset();
-
-          // Re-enable button
-          submitButton.disabled = false;
-          submitButton.textContent = "Send Message";
-          formSubmitted = false;
-        }
-      });
-    </script>
   </body>
 </html>
