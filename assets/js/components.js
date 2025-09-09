@@ -1,4 +1,22 @@
 // ============================================
+// FAVICON INJECTOR
+// ============================================
+
+function addFavicon() {
+  const faviconLink = document.createElement("link");
+  faviconLink.rel = "icon";
+  faviconLink.type = "image/logos/png";
+  // Assuming your favicon is at assets/images/logos/logo_JVL_FAVICON.png
+  // The path starts with "/" to make sure it works from any page (e.g., /about/ or /contact/)
+  faviconLink.href = "/assets/images/logo/logo_JVL_FAVICON.png";
+  document.head.appendChild(faviconLink);
+  console.log("✅ Favicon added to the page.");
+}
+
+// Run the function to add the favicon
+addFavicon();
+
+// ============================================
 // COMPONENT LOADER SYSTEM
 // ============================================
 
