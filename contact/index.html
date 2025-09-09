@@ -42,16 +42,10 @@
             Send Us a Message
           </h3>
           <!-- 
-            NOTE: This is a simplified test form. 
-            The target="hidden_iframe" and the custom script have been removed.
-            This form WILL redirect to the Google Forms "Thank You" page upon submission.
-           -->
-          <form
-            action="https://docs.google.com/forms/d/e/1FAIpQLSd6XPQDrLs-zOPsrseYggyD8wKS5qsG5oTV9T-VaYGG7Dcsuw/formResponse"
-            method="POST"
-            class="space-y-6"
-            id="contact-form"
-          >
+            This form now uses JavaScript for submission. 
+            The 'action' and 'method' attributes are removed from the form tag.
+          -->
+          <form class="space-y-6" id="contact-form">
             <!-- Full Name -->
             <div>
               <label
@@ -149,6 +143,7 @@
                 Send Message
               </button>
             </div>
+            <p id="form-status" class="text-center mt-4 h-6"></p>
           </form>
         </div>
 
@@ -254,5 +249,47 @@
     <script src="../assets/js/theme.js"></script>
     <script src="../assets/js/navigation.js"></script>
     <script src="../assets/js/components.js"></script>
+
+    <!-- Robust Form Submission Script -->
+    <script>
+      const form = document.getElementById("contact-form");
+      const status = document.getElementById("form-status");
+      const submitButton = document.getElementById("submit-button");
+      const googleFormUrl =
+        "https://docs.google.com/forms/d/e/1FAIpQLSd6XPQDrLs-zOPsrseYggyD8wKS5qsG5oTV9T-VaYGG7Dcsuw/formResponse";
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault(); // Prevent the default form submission
+
+        // Update UI to show submission is in progress
+        status.textContent = "Sending...";
+        status.className = "text-center mt-4 h-6 text-blue-500";
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(googleFormUrl, {
+            method: "POST",
+            mode: "no-cors", // Important: Prevents CORS errors
+            body: formData,
+          });
+
+          // Show success message
+          status.textContent = "Thank you! Your message has been sent.";
+          status.className = "text-center mt-4 h-6 text-green-500";
+          form.reset();
+        } catch (error) {
+          // Show error message
+          console.error("Form submission error:", error);
+          status.textContent = "An error occurred. Please try again.";
+          status.className = "text-center mt-4 h-6 text-red-500";
+        } finally {
+          // Re-enable the button
+          submitButton.disabled = false;
+          submitButton.textContent = "Send Message";
+        }
+      });
+    </script>
   </body>
 </html>
