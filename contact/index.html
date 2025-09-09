@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contact Jekora Ventures for a quote on waste management, recycling, and other environmental solutions in Ghana."
+    />
+    <title>Contact Us - Jekora Ventures Limited</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <!-- Navigation (will be loaded by JS) -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg hero-pattern text-white py-20">
+      <div class="max-w-4xl mx-auto px-4 text-center fade-in">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h2>
+        <p class="text-lg md:text-xl text-green-100 max-w-3xl mx-auto">
+          We're here to help with all your waste management needs. Reach out for
+          a quote, ask a question, or let us know how we can serve you.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <div class="max-w-6xl mx-auto px-4 py-16">
+      <div class="grid md:grid-cols-5 gap-12">
+        <!-- Contact Form -->
+        <div
+          class="md:col-span-3 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg"
+        >
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            Send Us a Message
+          </h3>
+          <!-- 
+            This form is now connected to your Google Form.
+            Submissions will appear in your Google Sheet.
+           -->
+          <form
+            action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd6XPQDrLs-zOPsrseYggyD8wKS5qsG5oTV9T-VaYGG7Dcsuw/formResponse"
+            method="POST"
+            class="space-y-6"
+            id="contact-form"
+            target="hidden_iframe"
+          >
+            <!-- Full Name -->
+            <div>
+              <label
+                for="full_name"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >Full Name</label
+              >
+              <input
+                type="text"
+                name="entry.421775461"
+                id="full_name"
+                required
+                placeholder="e.g., Ama Mensah"
+                class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
+              />
+            </div>
+
+            <!-- Email Address -->
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >Email Address</label
+              >
+              <input
+                type="email"
+                name="entry.184175951"
+                id="email"
+                required
+                placeholder="you@example.com"
+                class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
+              />
+            </div>
+
+            <!-- Phone Number -->
+            <div>
+              <label
+                for="phone"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >Phone Number (Optional)</label
+              >
+              <input
+                type="tel"
+                name="entry.1604461624"
+                id="phone"
+                placeholder="024 123 4567"
+                class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
+              />
+            </div>
+
+            <!-- Service of Interest -->
+            <div>
+              <label
+                for="service"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >Service of Interest</label
+              >
+              <select
+                id="service"
+                name="entry.884684946"
+                class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
+              >
+                <option>General Inquiry</option>
+                <option>Waste Collection</option>
+                <option>Plastic Recycling</option>
+                <option>Organic Composting</option>
+                <option>Paper Recycling</option>
+                <option>Glass Recovery</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label
+                for="message"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >Your Message</label
+              >
+              <textarea
+                id="message"
+                name="entry.687422420"
+                rows="5"
+                required
+                placeholder="Please describe your needs or question here."
+                class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
+              ></textarea>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                class="w-full btn-primary py-3"
+                id="submit-button"
+              >
+                Send Message
+              </button>
+            </div>
+            <p id="form-status" class="text-center mt-4 h-6"></p>
+          </form>
+          <!-- Hidden iframe to handle form submission without redirect -->
+          <iframe
+            name="hidden_iframe"
+            id="hidden_iframe"
+            style="display: none"
+          ></iframe>
+        </div>
+
+        <!-- Contact Information Column -->
+        <div class="md:col-span-2 space-y-10">
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              Contact Details
+            </h3>
+            <div class="space-y-4 text-lg">
+              <p class="flex items-start">
+                <span class="w-8 h-8 mr-4 mt-1 theme-organic flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    ></path>
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                  </svg>
+                </span>
+                <span class="text-gray-700 dark:text-gray-300"
+                  >Aboraa Building, Kanfla Close, Asylum Down, Accra,
+                  Ghana</span
+                >
+              </p>
+              <p class="flex items-center">
+                <span class="w-8 h-8 mr-4 theme-plastic flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    ></path>
+                  </svg>
+                </span>
+                <a
+                  href="tel:+233289673514"
+                  class="text-gray-700 dark:text-gray-300 hover:text-green-600 transition"
+                  >+233 28 967 3514</a
+                >
+              </p>
+              <p class="flex items-center">
+                <span class="w-8 h-8 mr-4 theme-paper flex-shrink-0">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    ></path>
+                  </svg>
+                </span>
+                <a
+                  href="mailto:info@jekoraventures.com"
+                  class="text-gray-700 dark:text-gray-300 hover:text-green-600 transition"
+                  >info@jekoraventures.com</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              Business Hours
+            </h3>
+            <p class="text-lg text-gray-700 dark:text-gray-300">
+              Monday - Friday: 8:00 AM - 5:00 PM
+            </p>
+            <p class="text-lg text-gray-700 dark:text-gray-300">
+              Saturday - Sunday: Closed
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map Section -->
+    <section class="mt-8">
+      <div
+        class="bg-gray-200 dark:bg-gray-800 h-96 flex items-center justify-center text-center text-gray-500 dark:text-gray-400"
+      >
+        <div>
+          <svg
+            class="w-16 h-16 mx-auto mb-4 theme-organic"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 16.382V5.618a1 1 0 00-1.447-.894L15 7m-6 13v-6.5m6 10v-6.5m-6 3.5l6-3"
+            ></path>
+          </svg>
+          <p class="font-semibold">Interactive Map Coming Soon</p>
+          <p class="text-sm mt-2">
+            [An embedded Google Map of our office location will go here]
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer (will be loaded by JS) -->
+    <div id="footer-placeholder"></div>
+
+    <!-- External Scripts -->
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/components.js"></script>
+
+    <!-- Page-specific script for form handling -->
+    <script>
+      const form = document.getElementById("contact-form");
+      const status = document.getElementById("form-status");
+      const submitButton = document.getElementById("submit-button");
+      let formSubmitted = false;
+
+      form.addEventListener("submit", () => {
+        // Show submitting message and disable button
+        status.textContent = "Sending...";
+        status.className = "text-center mt-4 h-6 text-blue-500";
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+        formSubmitted = true;
+      });
+
+      // Listen for the iframe to load after submission
+      const hiddenIframe = document.getElementById("hidden_iframe");
+      hiddenIframe.addEventListener("load", () => {
+        if (formSubmitted) {
+          // Show success message and reset the form
+          status.textContent = "Thank you! Your message has been sent.";
+          status.className = "text-center mt-4 h-6 text-green-500";
+          form.reset();
+
+          // Re-enable button
+          submitButton.disabled = false;
+          submitButton.textContent = "Send Message";
+          formSubmitted = false;
+        }
+      });
+    </script>
+  </body>
+</html>
