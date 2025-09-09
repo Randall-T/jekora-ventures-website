@@ -8,7 +8,7 @@ function addFavicon() {
   faviconLink.type = "image/logos/png";
   // Assuming your favicon is at assets/images/logos/logo_JVL_FAVICON.png
   // The path starts with "/" to make sure it works from any page (e.g., /about/ or /contact/)
-  faviconLink.href = "/assets/images/logo/logo_JVL_FAVICON.png";
+  faviconLink.href = "/assets/images/logos/logo_JVL_FAVICON.png";
   document.head.appendChild(faviconLink);
   console.log("✅ Favicon added to the page.");
 }
