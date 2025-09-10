@@ -41,12 +41,12 @@
           <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
             Send Us a Message
           </h3>
-          <!-- 
-            This form now uses JavaScript for submission. 
-            The 'action' and 'method' attributes are removed from the form tag.
-          -->
-          <form class="space-y-6" id="contact-form">
-            <!-- Full Name -->
+          <form
+            id="contact-form"
+            action="https://formspree.io/f/mldwzpld"
+            method="POST"
+            class="space-y-6"
+          >
             <div>
               <label
                 for="full_name"
@@ -55,15 +55,13 @@
               >
               <input
                 type="text"
-                name="entry.421775461"
+                name="Full Name"
                 id="full_name"
                 required
                 placeholder="e.g., Ama Mensah"
                 class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
               />
             </div>
-
-            <!-- Email Address -->
             <div>
               <label
                 for="email"
@@ -72,31 +70,28 @@
               >
               <input
                 type="email"
-                name="entry.184175951"
+                name="Email Address"
                 id="email"
                 required
                 placeholder="you@example.com"
                 class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
               />
             </div>
-
-            <!-- Phone Number -->
             <div>
               <label
                 for="phone"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                >Phone Number (Optional)</label
+                >Phone Number</label
               >
               <input
                 type="tel"
-                name="entry.1604461624"
+                name="Phone Number"
                 id="phone"
+                required
                 placeholder="024 123 4567"
                 class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
               />
             </div>
-
-            <!-- Service of Interest -->
             <div>
               <label
                 for="service"
@@ -105,7 +100,8 @@
               >
               <select
                 id="service"
-                name="entry.884684946"
+                required
+                name="Service of Interest"
                 class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
               >
                 <option>General Inquiry</option>
@@ -116,8 +112,6 @@
                 <option>Glass Recovery</option>
               </select>
             </div>
-
-            <!-- Message -->
             <div>
               <label
                 for="message"
@@ -126,14 +120,13 @@
               >
               <textarea
                 id="message"
-                name="entry.687422420"
+                name="Message"
                 rows="5"
                 required
                 placeholder="Please describe your needs or question here."
                 class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
               ></textarea>
             </div>
-
             <div>
               <button
                 type="submit"
