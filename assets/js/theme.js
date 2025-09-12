@@ -134,17 +134,20 @@ class ThemeManager {
 
   // Add event listeners
   addEventListeners() {
-    if (this.themeToggle) {
-      this.themeToggle.addEventListener("click", () => this.toggleTheme());
-    }
+    const setupListener = (element) => {
+      if (element) {
+        // Remove any old listeners to prevent duplication
+        element.replaceWith(element.cloneNode(true));
+        // Find the new element in the DOM
+        const newElement = document.getElementById(element.id);
+        // Add the event listener to the new element
+        newElement.addEventListener("click", () => this.toggleTheme());
+      }
+    };
 
-    if (this.themeToggleMobile) {
-      this.themeToggleMobile.addEventListener("click", () =>
-        this.toggleTheme()
-      );
-    }
+    setupListener(this.themeToggle);
+    setupListener(this.themeToggleMobile);
   }
-
   // Watch for system theme changes
   watchSystemTheme() {
     try {
