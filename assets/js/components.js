@@ -19,11 +19,26 @@ class ComponentLoader {
   }
 
   getComponentsPath() {
-    const path = window.location.pathname;
-    // A more robust check for any subdirectory
-    const isSubdirectory = path.split('/').filter(Boolean).length > 1;
-    return isSubdirectory ? "../components/" : "components/";
+  const path = window.location.pathname;
+  // Check if the path has more than one segment, indicating a subdirectory.
+  // Example: '/about/' becomes ["", "about", ""] -> filters to ["about"]
+  // We check if there's at least one directory name.
+  const pathSegments = path.split('/').filter(Boolean);
+  if (pathSegments.length > 0 && pathSegments[pathSegments.length - 1].endsWith('.html')) {
+    // If the last part is an HTML file, we are in a directory.
+    return "../components/";
   }
+  if (pathSegments.length > 0 && !path.endsWith('/')) {
+     // Handles cases like /about or /services without a trailing slash
+     return "../components/";
+  }
+   if (pathSegments.length === 1 && path.endsWith('/')) {
+     // Handles cases like /about/ or /services/
+     return "../components/";
+  }
+  // Otherwise, assume we're at the root.
+  return "components/";
+}
 
   async loadComponent(componentName, targetSelector) {
     const targetElement = document.querySelector(targetSelector);
