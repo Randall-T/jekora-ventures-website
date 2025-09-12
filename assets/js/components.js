@@ -36,7 +36,8 @@ class ComponentLoader {
       currentPath.includes("/services/") ||
       currentPath.includes("/media/") ||
       currentPath.includes("/blog/") ||
-      currentPath.includes("/contact/")
+      currentPath.includes("/contact/") ||
+      currentPath.includes("/register/")
     ) {
       return "../components/";
     }
@@ -214,6 +215,7 @@ class ComponentLoader {
     else if (currentPath.includes("/media")) currentPage = "media";
     else if (currentPath.includes("/blog")) currentPage = "blog";
     else if (currentPath.includes("/contact")) currentPage = "contact";
+    else if (currentPath.includes("/register")) currentPage = "register";
 
     // Update navigation links
     const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");

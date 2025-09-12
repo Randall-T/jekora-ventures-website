@@ -71,34 +71,22 @@ class NavigationManager {
     else if (currentPath.includes("/media")) currentPage = "media";
     else if (currentPath.includes("/blog")) currentPage = "blog";
     else if (currentPath.includes("/contact")) currentPage = "contact";
+    else if (currentPath.includes("/register")) currentPage = "register";
 
-    // Update navigation links
-    this.navLinks.forEach((link) => {
-      const href = link.getAttribute("href");
+    // Update all navigation links, including the new button
+    const allNavLinks = document.querySelectorAll("[data-page]");
+    allNavLinks.forEach((link) => {
       link.classList.remove("active", "font-semibold");
-      link.classList.add("font-medium");
+      if (!link.classList.contains("btn-primary")) {
+        link.classList.add("font-medium");
+      }
 
       // Set active state
-      if (
-        (currentPage === "home" && href === "/") ||
-        (currentPage !== "home" && href.includes(`/${currentPage}`))
-      ) {
-        link.classList.add("active", "font-semibold");
-        link.classList.remove("font-medium");
-      }
-    });
-
-    // Update mobile menu links
-    const mobileLinks = document.querySelectorAll("#mobile-menu a");
-    mobileLinks.forEach((link) => {
-      const href = link.getAttribute("href");
-      link.classList.remove("font-semibold");
-
-      if (
-        (currentPage === "home" && href === "/") ||
-        (currentPage !== "home" && href.includes(`/${currentPage}`))
-      ) {
-        link.classList.add("font-semibold");
+      if (link.dataset.page === currentPage) {
+        if (!link.classList.contains("btn-primary")) {
+          link.classList.add("active", "font-semibold");
+          link.classList.remove("font-medium");
+        }
       }
     });
   }

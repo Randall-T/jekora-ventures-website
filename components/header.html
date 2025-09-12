@@ -1,7 +1,7 @@
 <!-- Shared Header Component -->
 <nav class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-4">
-    <div class="flex justify-between items-center py-4">
+    <div class="flex justify-between items-center py-3">
       <!-- Logo -->
       <a href="/" aria-label="Jekora Ventures Homepage">
         <img
@@ -12,7 +12,7 @@
       </a>
 
       <!-- Desktop Menu -->
-      <div class="hidden md:flex items-center space-x-8">
+      <div class="hidden md:flex items-center space-x-6">
         <a
           href="/"
           class="nav-link text-gray-700 dark:text-gray-300"
@@ -48,6 +48,15 @@
           class="nav-link text-gray-700 dark:text-gray-300"
           data-page="contact"
           >Contact</a
+        >
+
+        <!-- Register Button -->
+        <a
+          href="/register/"
+          class="btn-primary"
+          style="padding: 0.5rem 1.25rem"
+          data-page="register"
+          >Register</a
         >
 
         <!-- Theme Toggle -->
@@ -127,6 +136,12 @@
           class="mobile-nav-link block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
           data-page="contact"
           >Contact</a
+        >
+        <a
+          href="/register/"
+          class="mobile-nav-link block py-2 px-2 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
+          data-page="register"
+          >Register for Service</a
         >
       </div>
     </div>

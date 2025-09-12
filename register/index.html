@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Register for reliable residential or commercial waste collection services with Jekora Ventures in our designated service zones in Accra."
+    />
+    <title>Register for Service - Jekora Ventures Limited</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <!-- Custom styles for the modal -->
+    <style>
+      .modal-overlay {
+        transition: opacity 0.3s ease;
+      }
+      .modal-content {
+        transition: transform 0.3s ease;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <!-- Navigation -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg hero-pattern text-white py-20">
+      <div class="max-w-4xl mx-auto px-4 text-center fade-in">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+          Register for Waste Collection Services
+        </h2>
+        <p class="text-lg md:text-xl text-green-100">
+          Join thousands of satisfied clients. Fill out the form below to begin
+          the registration process for your home or business.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 py-16">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
+        <form
+          id="registration-form"
+          action="https://formspree.io/f/mjkezrbw"
+          method="POST"
+          class="space-y-8"
+        >
+          <!-- Step 1: Customer Type -->
+          <fieldset>
+            <legend
+              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              Step 1: Tell us who you are
+            </legend>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <input
+                  id="customer-type-home"
+                  name="Customer Type"
+                  type="radio"
+                  value="Home"
+                  class="h-4 w-4 text-green-600 border-gray-300 focus:ring-green-500"
+                  checked
+                />
+                <label
+                  for="customer-type-home"
+                  class="ml-3 block text-lg text-gray-700 dark:text-gray-300"
+                  >A Home (Residential)</label
+                >
+              </div>
+              <div class="flex items-center">
+                <input
+                  id="customer-type-business"
+                  name="Customer Type"
+                  type="radio"
+                  value="Business"
+                  class="h-4 w-4 text-green-600 border-gray-300 focus:ring-green-500"
+                />
+                <label
+                  for="customer-type-business"
+                  class="ml-3 block text-lg text-gray-700 dark:text-gray-300"
+                  >A Business or Organization</label
+                >
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Business-only fields -->
+          <div
+            id="business-fields"
+            class="hidden space-y-6 border-t border-gray-200 dark:border-gray-700 pt-6"
+          >
+            <div>
+              <label
+                for="company-name"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >Company Name</label
+              >
+              <input
+                type="text"
+                name="Company Name"
+                id="company-name"
+                class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+              />
+            </div>
+            <div>
+              <label
+                for="business-type"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >Type of Business</label
+              >
+              <select
+                id="business-type"
+                name="Business Type"
+                class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+              >
+                <option>Restaurant/Hotel</option>
+                <option>Shop/Office</option>
+                <option>Factory/Industry</option>
+                <option>Hospital/Clinic</option>
+                <option>Market</option>
+                <option value="Other">Other (Please specify)</option>
+              </select>
+            </div>
+            <!-- This is the new field that appears when "Other" is selected -->
+            <div id="other-business-type-wrapper" class="hidden">
+              <label
+                for="other-business-type"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >Please Specify Business Type</label
+              >
+              <input
+                type="text"
+                name="Other Business Type"
+                id="other-business-type"
+                class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+              />
+            </div>
+          </div>
+
+          <!-- Step 2: Location -->
+          <fieldset class="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <legend
+              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              Step 2: Confirm Your Service Location
+            </legend>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="assembly"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Municipal Assembly</label
+                >
+                <select
+                  id="assembly"
+                  name="Assembly"
+                  required
+                  class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+                >
+                  <option value="">Select Assembly...</option>
+                  <option value="Korle Klottey">
+                    Korle Klottey Municipal Assembly
+                  </option>
+                  <option value="Adenta">Adenta Municipal Assembly</option>
+                  <option value="Weija Gbawe">
+                    Weija Gbawe Municipal Assembly
+                  </option>
+                </select>
+              </div>
+              <div>
+                <label
+                  for="community"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Community / Town</label
+                >
+                <select
+                  id="community"
+                  name="Community"
+                  required
+                  disabled
+                  class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md disabled:opacity-50"
+                >
+                  <option value="">First, select an assembly...</option>
+                </select>
+              </div>
+            </div>
+            <div id="specific-area-wrapper" class="mt-6 hidden">
+              <label
+                for="specific-area"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >Specific Area</label
+              >
+              <select
+                id="specific-area"
+                name="Specific Area"
+                required
+                class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+              >
+                <option value="">Select specific area...</option>
+              </select>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">
+              If your area is not listed, we are not yet in your zone. Please
+              use our main contact form for special inquiries.
+            </p>
+          </fieldset>
+
+          <!-- Step 3: Contact & Address -->
+          <fieldset class="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <legend
+              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              Step 3: Your Contact & Address Details
+            </legend>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  for="full_name"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  name="Full Name"
+                  id="full_name"
+                  required
+                  class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+                />
+              </div>
+              <div>
+                <label
+                  for="phone"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Phone Number</label
+                >
+                <input
+                  type="tel"
+                  name="Phone Number"
+                  id="phone"
+                  required
+                  class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+                />
+              </div>
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  name="Email Address"
+                  id="email"
+                  required
+                  class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+                />
+              </div>
+              <div>
+                <label
+                  for="address"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >Street Name & House No.</label
+                >
+                <input
+                  type="text"
+                  name="Address"
+                  id="address"
+                  required
+                  class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+                />
+              </div>
+              <div class="md:col-span-2">
+                <label
+                  for="ghanapost"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >GhanaPostGPS Digital Address</label
+                >
+                <input
+                  type="text"
+                  name="GhanaPostGPS"
+                  id="ghanapost"
+                  placeholder="e.g., GA-123-4567"
+                  required
+                  class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+                />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Step 4: Service Details -->
+          <fieldset class="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <legend
+              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              Step 4: Select Your Service Needs
+            </legend>
+            <div>
+              <label
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                >Bin Size(s) & Quantity</label
+              >
+              <div id="bin-options-container" class="space-y-4">
+                <!-- Dynamic bin options with quantity inputs will be inserted here -->
+              </div>
+            </div>
+            <div class="mt-6">
+              <label
+                for="frequency"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >Collection Frequency</label
+              >
+              <select
+                id="frequency"
+                name="Collection Frequency"
+                required
+                class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md"
+              >
+                <option>Once Weekly</option>
+                <option>Twice Weekly</option>
+                <option>Thrice Weekly</option>
+                <option>Daily</option>
+                <option>On-Demand</option>
+              </select>
+            </div>
+          </fieldset>
+
+          <!-- Step 5: Agreement -->
+          <fieldset class="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <legend
+              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
+            >
+              Step 5: Agreement
+            </legend>
+            <div class="relative flex items-start">
+              <div class="flex items-center h-5">
+                <input
+                  id="agreement"
+                  name="agreement"
+                  type="checkbox"
+                  required
+                  class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                />
+              </div>
+              <div class="ml-3 text-sm">
+                <label
+                  for="agreement"
+                  class="font-medium text-gray-700 dark:text-gray-300"
+                  >I have read and agree to the
+                  <button
+                    type="button"
+                    id="open-terms-modal"
+                    class="font-medium theme-organic hover:underline"
+                  >
+                    General Service Conditions</button
+                  >.</label
+                >
+              </div>
+            </div>
+          </fieldset>
+
+          <input type="hidden" name="Bin Details" id="bin-details-summary" />
+          <div class="pt-6">
+            <button
+              type="submit"
+              id="submit-button"
+              class="w-full btn-primary py-3"
+            >
+              Submit Registration Request
+            </button>
+            <p id="form-status" class="text-center mt-4 h-6"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div
+      id="terms-modal"
+      class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50"
+    >
+      <div
+        class="modal-content bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl max-h-full overflow-y-auto p-8 transform scale-95"
+      >
+        <div
+          class="flex justify-between items-center border-b pb-3 dark:border-gray-600"
+        >
+          <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">
+            General Service Conditions
+          </h3>
+          <button
+            id="close-terms-modal"
+            class="text-gray-400 hover:text-gray-600 dark:hover:text-white transition"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div class="mt-6 space-y-4 text-gray-700 dark:text-gray-300">
+          <p>
+            Please review the following conditions for our solid waste
+            collection service:
+          </p>
+          <ul class="list-disc list-inside space-y-2 pl-4">
+            <li>
+              Services shall be delivered within the general Operational Policy
+              and Regulatory Framework of the relevant MMDA.
+            </li>
+            <li>
+              Billing is calculated on a per-household or per-unit basis, not
+              for an entire building or compound.
+            </li>
+            <li>
+              Spillage around refuse containers is highly discouraged and should
+              be avoided.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- External Scripts -->
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/components.js"></script>
+
+    <!-- Page-Specific JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const businessTypeSelect = document.getElementById("business-type");
+        const otherBusinessTypeWrapper = document.getElementById(
+          "other-business-type-wrapper"
+        );
+        const otherBusinessTypeInput = document.getElementById(
+          "other-business-type"
+        );
+
+        // --- DYNAMIC "OTHER" BUSINESS TYPE LOGIC ---
+        businessTypeSelect.addEventListener("change", (event) => {
+          const isOther = event.target.value === "Other";
+          otherBusinessTypeWrapper.classList.toggle("hidden", !isOther);
+          otherBusinessTypeInput.required = isOther;
+        });
+
+        // The rest of the script remains the same...
+        const assemblySelect = document.getElementById("assembly");
+        const communitySelect = document.getElementById("community");
+        const specificAreaWrapper = document.getElementById(
+          "specific-area-wrapper"
+        );
+        const specificAreaSelect = document.getElementById("specific-area");
+        const serviceAreas = {
+          "Korle Klottey": {
+            Osu: ["Osu RE", "Ringway Estates", "Nyaniba Estates"],
+            "Asylum Down": ["Farrar Avenue", "Circle Area"],
+            Ridge: null,
+            Adabraka: null,
+            Tudu: null,
+            Odawna: null,
+          },
+          Adenta: {
+            "Ashiyie Enclave": null,
+            "Adenta Zone 2": ["SSNIT Flats", "New Adenta"],
+            "East Legon Hills": null,
+          },
+          "Weija Gbawe": {
+            Weija: null,
+            Gbawe: null,
+            Mallam: ["Mallam Market", "Gbawe-Mallam Road"],
+            "McCarthy Hill": null,
+          },
+        };
+        assemblySelect.addEventListener("change", (event) => {
+          const selectedAssembly = event.target.value;
+          communitySelect.innerHTML =
+            '<option value="">Select Community...</option>';
+          specificAreaWrapper.classList.add("hidden");
+          specificAreaSelect.innerHTML =
+            '<option value="">Select specific area...</option>';
+          if (selectedAssembly && serviceAreas[selectedAssembly]) {
+            communitySelect.disabled = false;
+            Object.keys(serviceAreas[selectedAssembly]).forEach((community) => {
+              const option = document.createElement("option");
+              option.value = community;
+              option.textContent = community;
+              communitySelect.appendChild(option);
+            });
+          } else {
+            communitySelect.disabled = true;
+          }
+        });
+        communitySelect.addEventListener("change", (event) => {
+          const selectedAssembly = assemblySelect.value;
+          const selectedCommunity = event.target.value;
+          const subsets = serviceAreas[selectedAssembly]?.[selectedCommunity];
+          specificAreaSelect.innerHTML =
+            '<option value="">Select specific area...</option>';
+          if (subsets) {
+            specificAreaWrapper.classList.remove("hidden");
+            specificAreaSelect.disabled = false;
+            subsets.forEach((subset) => {
+              const option = document.createElement("option");
+              option.value = subset;
+              option.textContent = subset;
+              specificAreaSelect.appendChild(option);
+            });
+          } else {
+            specificAreaWrapper.classList.add("hidden");
+            specificAreaSelect.disabled = true;
+          }
+        });
+        const form = document.getElementById("registration-form");
+        const statusEl = document.getElementById("form-status");
+        const submitButton = document.getElementById("submit-button");
+        const customerTypeRadios = document.querySelectorAll(
+          'input[name="Customer Type"]'
+        );
+        const businessFields = document.getElementById("business-fields");
+        const companyNameInput = document.getElementById("company-name");
+        const binContainer = document.getElementById("bin-options-container");
+        const binDetailsSummaryInput = document.getElementById(
+          "bin-details-summary"
+        );
+        const modal = document.getElementById("terms-modal");
+        const openModalBtn = document.getElementById("open-terms-modal");
+        const closeModalBtn = document.getElementById("close-terms-modal");
+        const binOptions = {
+          all: ["120L", "240L", "360L", "660L", "1100L"],
+          commercial: ["12m³ (Skip)", "23m³ (Skip)"],
+        };
+        openModalBtn.addEventListener("click", () =>
+          modal.classList.remove("hidden")
+        );
+        closeModalBtn.addEventListener("click", () =>
+          modal.classList.add("hidden")
+        );
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) modal.classList.add("hidden");
+        });
+        function renderBinOptions(customerType) {
+          binContainer.innerHTML = "";
+          let optionsToShow = [...binOptions.all];
+          if (customerType === "Business") {
+            optionsToShow.push(...binOptions.commercial);
+          }
+          optionsToShow.forEach((bin) => {
+            const uniqueId = `bin-${bin.replace(/[^a-zA-Z0-9]/g, "")}`;
+            const div = document.createElement("div");
+            div.className =
+              "flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-md";
+            const checkboxLabelWrapper = document.createElement("div");
+            checkboxLabelWrapper.className = "flex items-center";
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.id = uniqueId;
+            checkbox.name = "bin_selection";
+            checkbox.value = bin;
+            checkbox.className =
+              "h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500";
+            const label = document.createElement("label");
+            label.htmlFor = uniqueId;
+            label.className =
+              "ml-3 block text-sm font-medium text-gray-700 dark:text-gray-300";
+            label.textContent = bin;
+            checkboxLabelWrapper.appendChild(checkbox);
+            checkboxLabelWrapper.appendChild(label);
+            const quantityInput = document.createElement("input");
+            quantityInput.type = "number";
+            quantityInput.min = "1";
+            quantityInput.value = "1";
+            quantityInput.dataset.binSize = bin;
+            quantityInput.className =
+              "w-20 px-2 py-1 text-center bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-md hidden";
+            checkbox.addEventListener("change", (e) => {
+              quantityInput.classList.toggle("hidden", !e.target.checked);
+            });
+            div.appendChild(checkboxLabelWrapper);
+            div.appendChild(quantityInput);
+            binContainer.appendChild(div);
+          });
+        }
+        customerTypeRadios.forEach((radio) => {
+          radio.addEventListener("change", (event) => {
+            const isBusiness = event.target.value === "Business";
+            businessFields.classList.toggle("hidden", !isBusiness);
+            companyNameInput.required = isBusiness;
+            renderBinOptions(event.target.value);
+          });
+        });
+        async function handleSubmit(event) {
+          event.preventDefault();
+          const selectedBins = [];
+          const checkboxes = binContainer.querySelectorAll(
+            'input[type="checkbox"]:checked'
+          );
+          checkboxes.forEach((cb) => {
+            const quantityInput = cb
+              .closest("div")
+              .querySelector('input[type="number"]');
+            selectedBins.push(`${quantityInput.value} x ${cb.value}`);
+          });
+          binDetailsSummaryInput.value = selectedBins.join(", ") || "N/A";
+          const data = new FormData(event.target);
+          statusEl.textContent = "Submitting...";
+          statusEl.className = "text-center mt-4 h-6 text-blue-500";
+          submitButton.disabled = true;
+          submitButton.textContent = "Please wait...";
+          fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: { Accept: "application/json" },
+          })
+            .then((response) => {
+              if (response.ok) {
+                statusEl.textContent =
+                  "Registration request received! We'll be in touch shortly.";
+                statusEl.className = "text-center mt-4 h-6 text-green-500";
+                form.reset();
+                renderBinOptions("Home");
+                businessFields.classList.add("hidden");
+                communitySelect.disabled = true;
+                communitySelect.innerHTML =
+                  '<option value="">First, select an assembly...</option>';
+                specificAreaWrapper.classList.add("hidden");
+              } else {
+                response.json().then((data) => {
+                  statusEl.textContent = data.errors
+                    ? data.errors.map((e) => e.message).join(", ")
+                    : "Oops! There was a problem.";
+                  statusEl.className = "text-center mt-4 h-6 text-red-500";
+                });
+              }
+            })
+            .catch((error) => {
+              statusEl.textContent =
+                "Oops! There was a problem submitting your form.";
+              statusEl.className = "text-center mt-4 h-6 text-red-500";
+            })
+            .finally(() => {
+              submitButton.disabled = false;
+              submitButton.textContent = "Submit Registration Request";
+            });
+        }
+        form.addEventListener("submit", handleSubmit);
+        renderBinOptions("Home");
+      });
+    </script>
+  </body>
+</html>
