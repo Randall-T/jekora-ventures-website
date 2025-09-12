@@ -8,33 +8,23 @@
       content="Contact Jekora Ventures for a quote on waste management, recycling, and other environmental solutions in Ghana."
     />
     <title>Contact Us - Jekora Ventures Limited</title>
-
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- External Stylesheets -->
     <link rel="stylesheet" href="../assets/css/main.css" />
     <link rel="stylesheet" href="../assets/css/components.css" />
   </head>
   <body class="bg-gray-50 dark:bg-gray-900">
-    <!-- Navigation (will be loaded by JS) -->
     <div id="header-placeholder"></div>
-
-    <!-- Hero Section -->
     <section class="gradient-bg hero-pattern text-white py-20">
       <div class="max-w-4xl mx-auto px-4 text-center fade-in">
         <h2 class="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h2>
         <p class="text-lg md:text-xl text-green-100 max-w-3xl mx-auto">
-          We're here to help with all your waste management needs. Reach out for
-          a quote, ask a question, or let us know how we can serve you.
+          We're here to help. Reach out for a quote, ask a question, or let us
+          know how we can serve you.
         </p>
       </div>
     </section>
-
-    <!-- Main Content Area -->
     <div class="max-w-6xl mx-auto px-4 py-16">
       <div class="grid md:grid-cols-5 gap-12">
-        <!-- Contact Form -->
         <div
           class="md:col-span-3 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg"
         >
@@ -81,13 +71,12 @@
               <label
                 for="phone"
                 class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                >Phone Number</label
+                >Phone Number (Optional)</label
               >
               <input
                 type="tel"
                 name="Phone Number"
                 id="phone"
-                required
                 placeholder="024 123 4567"
                 class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
               />
@@ -100,7 +89,6 @@
               >
               <select
                 id="service"
-                required
                 name="Service of Interest"
                 class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
               >
@@ -139,8 +127,6 @@
             <p id="form-status" class="text-center mt-4 h-6"></p>
           </form>
         </div>
-
-        <!-- Contact Information Column -->
         <div class="md:col-span-2 space-y-10">
           <div>
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
@@ -219,8 +205,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Map Section -->
     <section class="mt-8">
       <div class="w-full">
         <iframe
@@ -234,55 +218,61 @@
         ></iframe>
       </div>
     </section>
-
-    <!-- Footer (will be loaded by JS) -->
     <div id="footer-placeholder"></div>
-
-    <!-- External Scripts -->
     <script src="../assets/js/theme.js"></script>
     <script src="../assets/js/navigation.js"></script>
     <script src="../assets/js/components.js"></script>
-
-    <!-- Robust Form Submission Script -->
     <script>
-      const form = document.getElementById("contact-form");
-      const status = document.getElementById("form-status");
-      const submitButton = document.getElementById("submit-button");
-      const googleFormUrl =
-        "https://docs.google.com/forms/d/e/1FAIpQLSd6XPQDrLs-zOPsrseYggyD8wKS5qsG5oTV9T-VaYGG7Dcsuw/formResponse";
+      var form = document.getElementById("contact-form");
+      var status = document.getElementById("form-status");
+      var submitButton = document.getElementById("submit-button");
 
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault(); // Prevent the default form submission
+      async function handleSubmit(event) {
+        event.preventDefault();
+        var data = new FormData(event.target);
 
-        // Update UI to show submission is in progress
         status.textContent = "Sending...";
         status.className = "text-center mt-4 h-6 text-blue-500";
         submitButton.disabled = true;
         submitButton.textContent = "Submitting...";
 
-        try {
-          const formData = new FormData(form);
-          const response = await fetch(googleFormUrl, {
-            method: "POST",
-            mode: "no-cors", // Important: Prevents CORS errors
-            body: formData,
+        fetch(event.target.action, {
+          method: form.method,
+          body: data,
+          headers: { Accept: "application/json" },
+        })
+          .then((response) => {
+            if (response.ok) {
+              status.textContent = "Thanks for your submission!";
+              status.className = "text-center mt-4 h-6 text-green-500";
+              form.reset();
+            } else {
+              response.json().then((data) => {
+                if (Object.hasOwn(data, "errors")) {
+                  status.textContent = data["errors"]
+                    .map((error) => error["message"])
+                    .join(", ");
+                  status.className = "text-center mt-4 h-6 text-red-500";
+                } else {
+                  status.textContent =
+                    "Oops! There was a problem submitting your form";
+                  status.className = "text-center mt-4 h-6 text-red-500";
+                }
+              });
+            }
+          })
+          .catch((error) => {
+            status.textContent =
+              "Oops! There was a problem submitting your form";
+            status.className = "text-center mt-4 h-6 text-red-500";
+            console.error("Form submission error:", error);
+          })
+          .finally(() => {
+            submitButton.disabled = false;
+            submitButton.textContent = "Send Message";
           });
-
-          // Show success message
-          status.textContent = "Thank you! Your message has been sent.";
-          status.className = "text-center mt-4 h-6 text-green-500";
-          form.reset();
-        } catch (error) {
-          // Show error message
-          console.error("Form submission error:", error);
-          status.textContent = "An error occurred. Please try again.";
-          status.className = "text-center mt-4 h-6 text-red-500";
-        } finally {
-          // Re-enable the button
-          submitButton.disabled = false;
-          submitButton.textContent = "Send Message";
-        }
-      });
+      }
+      form.addEventListener("submit", handleSubmit);
     </script>
   </body>
 </html>
