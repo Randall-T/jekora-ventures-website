@@ -243,7 +243,8 @@
         })
           .then((response) => {
             if (response.ok) {
-              status.textContent = "Thanks for your submission!";
+              status.textContent =
+                "Message received! We'll be in touch shortly.";
               status.className = "text-center mt-4 h-6 text-green-500";
               form.reset();
             } else {
