@@ -238,3 +238,59 @@
     margin-bottom: 1rem;
   }
 }
+
+/* ============================================
+   TEAM SECTION TABS & MODAL
+   ============================================ */
+
+/* Tab Navigation Styling */
+.team-tab {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.team-tab:hover {
+  opacity: 1;
+}
+
+.team-tab.active {
+  opacity: 1;
+  border-bottom-color: var(--organic); /* Default active color */
+}
+
+/* Tab-specific active colors */
+.team-tab.active.theme-plastic {
+  border-bottom-color: var(--plastic);
+}
+.team-tab.active.theme-paper {
+  border-bottom-color: var(--paper);
+}
+.team-tab.active.theme-gold {
+  border-bottom-color: var(--highlight-gold);
+}
+.team-tab.active.theme-red {
+  border-bottom-color: var(--action-red);
+}
+
+/* Team content panels */
+.team-panel {
+  display: none; /* Hide all panels by default */
+}
+
+.team-panel.active {
+  display: grid; /* Show the active one */
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Team Member Bio Modal */
+.modal-overlay {
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
