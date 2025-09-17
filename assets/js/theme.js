@@ -8,8 +8,6 @@ class ThemeManager {
     this.themeToggleMobile = document.getElementById("theme-toggle-mobile");
     this.themeIcon = document.getElementById("theme-icon");
     this.themeIconMobile = document.getElementById("theme-icon-mobile");
-
-    this.init();
   }
 
   // Safe localStorage access
@@ -196,21 +194,3 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
-
-// ============================================
-// INITIALIZE ON DOM LOAD
-// ============================================
-document.addEventListener("DOMContentLoaded", function () {
-  // Initialize theme system
-  window.themeManager = new ThemeManager();
-
-  // Add debugging helpers (remove in production)
-  window.setTheme = (theme) => window.themeManager.setTheme(theme);
-  window.getCurrentTheme = () => window.themeManager.getCurrentTheme();
-  window.toggleTheme = () => window.themeManager.toggleTheme();
-
-  console.log("✅ Theme system fully initialized");
-  console.log(
-    'Debug commands: setTheme("dark"), setTheme("light"), toggleTheme(), getCurrentTheme()'
-  );
-});

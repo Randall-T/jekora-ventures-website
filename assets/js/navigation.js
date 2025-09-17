@@ -7,8 +7,6 @@ class NavigationManager {
     this.mobileMenuButton = document.getElementById("mobile-menu-button");
     this.mobileMenu = document.getElementById("mobile-menu");
     this.navLinks = document.querySelectorAll(".nav-link");
-
-    this.init();
   }
 
   init() {
@@ -124,16 +122,3 @@ function initSmoothScroll() {
     });
   });
 }
-
-// ============================================
-// INITIALIZE ON DOM LOAD
-// ============================================
-document.addEventListener("DOMContentLoaded", function () {
-  // Initialize navigation
-  window.navigationManager = new NavigationManager();
-
-  // Initialize smooth scroll
-  initSmoothScroll();
-
-  console.log("✅ Navigation system initialized");
-});
