@@ -4,15 +4,21 @@
 
 class NavigationManager {
   constructor() {
-    this.mobileMenuButton = document.getElementById("mobile-menu-button");
-    this.mobileMenu = document.getElementById("mobile-menu");
-    this.navLinks = document.querySelectorAll(".nav-link");
+    // Properties are defined here, but not initialized
+    this.mobileMenuButton = null;
+    this.mobileMenu = null;
   }
 
   init() {
+    // CORRECTED: Find elements inside init(), not the constructor
+    this.mobileMenuButton = document.getElementById("mobile-menu-button");
+    this.mobileMenu = document.getElementById("mobile-menu");
+
     this.setupMobileMenu();
     this.setActiveNavigation();
     this.setupClickOutside();
+    initSmoothScroll(); // Initialize smooth scroll here
+    console.log("✅ Navigation system initialized");
   }
 
   // Mobile menu toggle
@@ -22,7 +28,6 @@ class NavigationManager {
         this.toggleMobileMenu();
       });
 
-      // Close mobile menu when clicking on links
       const mobileLinks = this.mobileMenu.querySelectorAll("a");
       mobileLinks.forEach((link) => {
         link.addEventListener("click", () => {
@@ -33,11 +38,8 @@ class NavigationManager {
   }
 
   toggleMobileMenu() {
-    this.mobileMenu.classList.toggle("hidden");
-
-    // Update button icon
-    const isOpen = !this.mobileMenu.classList.contains("hidden");
-    this.updateMobileMenuIcon(isOpen);
+    const isOpen = this.mobileMenu.classList.toggle("hidden");
+    this.updateMobileMenuIcon(!isOpen);
   }
 
   closeMobileMenu() {
@@ -46,24 +48,21 @@ class NavigationManager {
   }
 
   updateMobileMenuIcon(isOpen) {
+    if (!this.mobileMenuButton) return;
     const buttonSvg = this.mobileMenuButton.querySelector("svg path");
     if (buttonSvg) {
-      if (isOpen) {
-        // X icon
-        buttonSvg.setAttribute("d", "M6 18L18 6M6 6l12 12");
-      } else {
-        // Hamburger icon
-        buttonSvg.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
-      }
+      buttonSvg.setAttribute(
+        "d",
+        isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"
+      );
     }
   }
 
-  // Set active navigation based on current page
+  // Set active navigation
   setActiveNavigation() {
     const currentPath = window.location.pathname;
     let currentPage = "home";
 
-    // Determine current page
     if (currentPath.includes("/about")) currentPage = "about";
     else if (currentPath.includes("/services")) currentPage = "services";
     else if (currentPath.includes("/media")) currentPage = "media";
@@ -71,31 +70,21 @@ class NavigationManager {
     else if (currentPath.includes("/contact")) currentPage = "contact";
     else if (currentPath.includes("/register")) currentPage = "register";
 
-    // Update all navigation links, including the new button
     const allNavLinks = document.querySelectorAll("[data-page]");
     allNavLinks.forEach((link) => {
       link.classList.remove("active", "font-semibold");
-      if (!link.classList.contains("btn-primary")) {
-        link.classList.add("font-medium");
-      }
-
-      // Set active state
       if (link.dataset.page === currentPage) {
-        if (!link.classList.contains("btn-primary")) {
-          link.classList.add("active", "font-semibold");
-          link.classList.remove("font-medium");
-        }
+        link.classList.add("active", "font-semibold");
       }
     });
   }
 
-  // Close mobile menu when clicking outside
+  // Close menu on outside click
   setupClickOutside() {
     document.addEventListener("click", (e) => {
       if (this.mobileMenu && !this.mobileMenu.classList.contains("hidden")) {
         const isClickInsideMenu = this.mobileMenu.contains(e.target);
         const isClickOnButton = this.mobileMenuButton.contains(e.target);
-
         if (!isClickInsideMenu && !isClickOnButton) {
           this.closeMobileMenu();
         }
@@ -108,7 +97,6 @@ class NavigationManager {
 // SMOOTH SCROLL FUNCTIONALITY
 // ============================================
 function initSmoothScroll() {
-  // Add smooth scrolling to internal links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
