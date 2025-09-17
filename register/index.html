@@ -643,14 +643,16 @@
                   statusEl.textContent = data.errors
                     ? data.errors.map((e) => e.message).join(", ")
                     : "Oops! There was a problem.";
-                  statusEl.className = "text-center mt-4 h-6 text-red-500";
+                  statusEl.className =
+                    "text-center mt-4 h-6 theme-red font-semibold";
                 });
               }
             })
             .catch((error) => {
               statusEl.textContent =
                 "Oops! There was a problem submitting your form.";
-              statusEl.className = "text-center mt-4 h-6 text-red-500";
+              statusEl.className =
+                "text-center mt-4 h-6 theme-red font-semibold";
             })
             .finally(() => {
               submitButton.disabled = false;

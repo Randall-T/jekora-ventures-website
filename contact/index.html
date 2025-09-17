@@ -253,11 +253,13 @@
                   status.textContent = data["errors"]
                     .map((error) => error["message"])
                     .join(", ");
-                  status.className = "text-center mt-4 h-6 text-red-500";
+                  status.className =
+                    "text-center mt-4 h-6 theme-red font-semibold";
                 } else {
                   status.textContent =
                     "Oops! There was a problem submitting your form";
-                  status.className = "text-center mt-4 h-6 text-red-500";
+                  status.className =
+                    "text-center mt-4 h-6 theme-red font-semibold";
                 }
               });
             }
@@ -265,7 +267,7 @@
           .catch((error) => {
             status.textContent =
               "Oops! There was a problem submitting your form";
-            status.className = "text-center mt-4 h-6 text-red-500";
+            status.className = "text-center mt-4 h-6 theme-red font-semibold";
             console.error("Form submission error:", error);
           })
           .finally(() => {

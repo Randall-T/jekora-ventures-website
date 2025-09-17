@@ -196,6 +196,23 @@
   transform: translateY(-2px);
 }
 
+.btn-danger {
+  background: var(--action-red) !important;
+  color: white !important;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background: #b91c1c !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(217, 34, 42, 0.3);
+}
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
   .theme-toggle {
