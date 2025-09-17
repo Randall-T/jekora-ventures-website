@@ -275,6 +275,9 @@
 .team-tab.active.theme-red {
   border-bottom-color: var(--action-red);
 }
+.team-tab.active.theme-glass {
+  border-bottom-color: var(--glass);
+}
 
 /* Team content panels */
 .team-panel {

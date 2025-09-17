@@ -378,7 +378,7 @@
 
         <div
           id="team-tabs"
-          class="flex justify-center border-b border-gray-200 dark:border-gray-700 mb-8"
+          class="flex flex-wrap justify-center border-b border-gray-200 dark:border-gray-700 mb-8"
         >
           <div class="team-tab theme-organic active" data-tab="management">
             Management
@@ -389,9 +389,9 @@
           <div class="team-tab theme-paper" data-tab="innovations">
             Innovations
           </div>
-          <div class="team-tab theme-gold" data-tab="finance">
-            Finance & Admin
-          </div>
+          <div class="team-tab theme-gold" data-tab="finance">Finance</div>
+          <div class="team-tab theme-red" data-tab="admin">Administration</div>
+          <div class="team-tab theme-glass" data-tab="it">IT</div>
         </div>
 
         <div id="team-panels">
@@ -404,21 +404,45 @@
             >
               <img
                 class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                src="[PATH_TO_IMAGE]"
-                alt="[Name]"
+                src="[PATH_TO_MD_IMAGE]"
+                alt="[MD Name]"
               />
               <h4
                 class="text-xl font-semibold mb-1 text-gray-900 dark:text-white"
               >
-                [Name]
+                [MD Name]
               </h4>
-              <p class="theme-organic mb-3 font-semibold">[Position]</p>
+              <p class="theme-organic mb-3 font-semibold">Managing Director</p>
               <button
                 class="btn-secondary text-sm py-2 px-4 open-bio-modal"
-                data-name="[Name]"
-                data-title="[Position]"
-                data-image="[PATH_TO_IMAGE]"
-                data-bio="[Full biography text here. This can be multiple paragraphs long and will appear in the pop-up.]"
+                data-name="[MD Name]"
+                data-title="Managing Director"
+                data-image="[PATH_TO_MD_IMAGE]"
+                data-bio="[Full biography for the Managing Director...]"
+              >
+                Read More
+              </button>
+            </div>
+            <div
+              class="team-card text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
+            >
+              <img
+                class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                src="[PATH_TO_CEO_IMAGE]"
+                alt="[CEO Name]"
+              />
+              <h4
+                class="text-xl font-semibold mb-1 text-gray-900 dark:text-white"
+              >
+                [CEO Name]
+              </h4>
+              <p class="theme-organic mb-3 font-semibold">CEO</p>
+              <button
+                class="btn-secondary text-sm py-2 px-4 open-bio-modal"
+                data-name="[CEO Name]"
+                data-title="CEO"
+                data-image="[PATH_TO_CEO_IMAGE]"
+                data-bio="[Full biography for the CEO...]"
               >
                 Read More
               </button>
@@ -437,6 +461,16 @@
 
           <div
             id="finance-panel"
+            class="team-panel grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          ></div>
+
+          <div
+            id="admin-panel"
+            class="team-panel grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          ></div>
+
+          <div
+            id="it-panel"
             class="team-panel grid md:grid-cols-2 lg:grid-cols-4 gap-8"
           ></div>
         </div>
