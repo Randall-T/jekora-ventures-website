@@ -5,11 +5,13 @@
 /* WASTE MANAGEMENT COLOR VARIABLES */
 :root {
   /* Waste Management Colors */
-  --organic: #10b981;
+  --organic: #047857;
   --plastic: #3b82f6;
   --paper: #92400e;
   --general: #6b7280;
   --glass: #06b6d4;
+  --action-red: #d9222a;
+  --highlight-gold: #f59e0b;
 
   /* Light variations */
   --organic-light: #34d399;
@@ -17,6 +19,8 @@
   --paper-light: #d97706;
   --general-light: #9ca3af;
   --glass-light: #22d3ee;
+  --action-red-light: #f87171;
+  --highlight-gold-light: #fbbf24;
 }
 
 /* ============================================
@@ -28,6 +32,8 @@
   --paper-bg: #fef3c7;
   --general-bg: #f9fafb;
   --glass-bg: #ecfeff;
+  --action-red-bg: #fee2e2;
+  --highlight-gold-bg: #fffbeb;
 
   --text-primary: #111827;
   --text-secondary: #6b7280;
@@ -54,6 +60,8 @@
   --paper-bg: rgba(146, 64, 14, 0.2) !important;
   --general-bg: rgba(107, 114, 128, 0.15) !important;
   --glass-bg: rgba(6, 182, 212, 0.15) !important;
+  --action-red-bg: rgba(217, 34, 42, 0.15) !important;
+  --highlight-gold-bg: rgba(245, 158, 11, 0.15) !important;
 
   --text-primary: #f9fafb !important;
   --text-secondary: #d1d5db !important;
@@ -173,6 +181,15 @@ h6 {
   border-top: 4px solid var(--glass) !important;
 }
 
+.service-card-red {
+  background-color: var(--action-red-bg) !important;
+  border-top: 4px solid var(--action-red) !important;
+}
+.service-card-gold {
+  background-color: var(--highlight-gold-bg) !important;
+  border-top: 4px solid var(--highlight-gold) !important;
+}
+
 /* ICON CONTAINERS */
 .icon-organic {
   background-color: var(--organic-bg) !important;
@@ -204,6 +221,17 @@ h6 {
   border: 2px solid var(--glass) !important;
 }
 
+.icon-red {
+  background-color: var(--action-red-bg) !important;
+  color: var(--action-red) !important;
+  border: 2px solid var(--action-red) !important;
+}
+.icon-gold {
+  background-color: var(--highlight-gold-bg) !important;
+  color: var(--highlight-gold) !important;
+  border: 2px solid var(--highlight-gold) !important;
+}
+
 /* THEME COLOR UTILITIES */
 .theme-organic {
   color: var(--organic) !important;
@@ -220,6 +248,12 @@ h6 {
 .theme-glass {
   color: var(--glass) !important;
 }
+.theme-red {
+  color: var(--action-red) !important;
+}
+.theme-gold {
+  color: var(--highlight-gold) !important;
+}
 
 .bg-theme-organic {
   background-color: var(--organic) !important;
@@ -235,6 +269,12 @@ h6 {
 }
 .bg-theme-glass {
   background-color: var(--glass) !important;
+}
+.bg-theme-red {
+  background-color: var(--action-red) !important;
+}
+.bg-theme-gold {
+  background-color: var(--highlight-gold) !important;
 }
 
 /* ============================================
