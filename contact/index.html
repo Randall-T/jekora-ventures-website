@@ -92,12 +92,28 @@
                 name="Service of Interest"
                 class="mt-1 block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 border border-transparent rounded-md focus:ring-green-500 focus:border-green-500 transition"
               >
-                <option>General Inquiry</option>
-                <option>Waste Collection</option>
-                <option>Plastic Recycling</option>
-                <option>Organic Composting</option>
-                <option>Paper Recycling</option>
-                <option>Glass Recovery</option>
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Registration Inquiry">
+                  Registration Inquiry
+                </option>
+                <option value="Residential Waste">
+                  Residential Waste Collection
+                </option>
+                <option value="Commercial Waste">
+                  Commercial Waste Collection
+                </option>
+                <option value="Industrial Waste">
+                  Industrial Waste Collection
+                </option>
+                <option value="Special Waste">Special Waste Pickup</option>
+                <option value="Recycling Solutions">Recycling Solutions</option>
+                <option value="Green Products">Green Products Order</option>
+                <option value="Special Projects">
+                  Special Projects & Consultancy
+                </option>
+                <option value="Public Toilet Management">
+                  Public Toilet Management
+                </option>
               </select>
             </div>
             <div>
@@ -223,6 +239,21 @@
     <script src="../assets/js/navigation.js"></script>
     <script src="../assets/js/components.js"></script>
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const service = urlParams.get("service");
+        const serviceSelect = document.getElementById("service");
+
+        if (service && serviceSelect) {
+          for (let i = 0; i < serviceSelect.options.length; i++) {
+            if (serviceSelect.options[i].value === service) {
+              serviceSelect.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      });
+
       var form = document.getElementById("contact-form");
       var status = document.getElementById("form-status");
       var submitButton = document.getElementById("submit-button");
