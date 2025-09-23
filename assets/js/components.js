@@ -98,6 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
       window.navigationManager = new NavigationManager();
       window.navigationManager.init(); // Manually call init() now
 
+      // 3. Initialize Team Section Tabs & Modal
+      initializeTeamSection(); // Initialize the team section functionality
+
       console.log("✅ All components and scripts initialized successfully.");
     };
 
