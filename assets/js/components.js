@@ -113,13 +113,23 @@ document.addEventListener("DOMContentLoaded", () => {
 // ============================================
 // TEAM MODAL AND TABS LOGIC
 // ============================================
+
+// Add a flag to ensure this only runs once
+let isTeamSectionInitialized = false;
+
 function initializeTeamSection() {
+  // If it's already been initialized, do nothing.
+  if (isTeamSectionInitialized) {
+    return;
+  }
+
   const tabs = document.querySelectorAll(".team-tab");
   const panels = document.querySelectorAll(".team-panel");
   const modal = document.getElementById("bio-modal");
   const modalContent = document.getElementById("bio-modal-content");
 
-  if (!tabs.length || !modal) return; // Don't run if the elements aren't on the page
+  // Don't run if the elements aren't on the page
+  if (!tabs.length || !modal) return;
 
   // --- Tab Switching Logic ---
   tabs.forEach((tab) => {
@@ -165,7 +175,6 @@ function initializeTeamSection() {
         `;
     modal.classList.remove("hidden");
     setTimeout(() => {
-      // For smooth transition
       modalContent.classList.remove("scale-95", "opacity-0");
     }, 50);
 
@@ -177,7 +186,6 @@ function initializeTeamSection() {
   function closeModal() {
     modalContent.classList.add("scale-95", "opacity-0");
     setTimeout(() => {
-      // For smooth transition
       modal.classList.add("hidden");
       modalContent.innerHTML = "";
     }, 300);
@@ -202,6 +210,9 @@ function initializeTeamSection() {
       closeModal();
     }
   });
+
+  // Set the flag to true to prevent this from running again
+  isTeamSectionInitialized = true;
 }
 
 // Modify the existing onComponentsLoaded function to call our new function
