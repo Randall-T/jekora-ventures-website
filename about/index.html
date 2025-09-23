@@ -277,7 +277,31 @@
                 data-name="Ing. Immanuel B. Nartey-Tokoli"
                 data-title="Managing Director"
                 data-image="../assets/images/team/team_MD.jpg"
-                data-bio="Ing. Immanuel B. Nartey-Tokoli (IBN-T) holds an Msc. Degree in Mechanical Engineering from the Byelarusian National Technical University (June 1987). He is a corporate member of the Ghana Institution of Engineers (Registered No. 05066). IBN-T has spent over 30 of his 35 post-qualification years in both the public and private waste management sector, implementing local cost-effective business solutions using appropriate technology."
+                data-bio="Ing. Immanuel B. Nartey-Tokoli (IBN-T) holds an Msc. Degree in Mechanical Engineering from the Byelarusian National Technical University (June 1987). He is a corporate member of the Ghana Institution of Engineers (Registered No. 05066).\n\nIBN-T has spent over 30 of his 35 post-qualification years in both the public and private waste management sector, implementing local cost-effective business solutions using appropriate technology. He has been involved in the establishment and management of private waste management companies and held top management positions with professional experience in conducting baseline studies, managing mechanical workshops, transport deployment, and personnel administration.\n\nAs the Managing Director of Jekora Ventures Ltd, he spearheads integrated waste management with source segregation of solid waste as a cornerstone to build resilience into waste valorisation for a circular economy. Through resource recovery, recycling, and composting, his work positively impacts environmental sanitation, public health, and climate change for sustainable development. Ing. Nartey-Tokoli also provides technical support services in Waste Management to the Environmental Service Providers Association (ESPA) of Ghana."
+              >
+                Read More
+              </button>
+            </div>
+            <div
+              class="team-card text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
+            >
+              <img
+                class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                src="../assets/images/team/team_LEGAL.jpg"
+                alt="Mr. Prince Buasu"
+              />
+              <h4
+                class="text-xl font-semibold mb-1 text-gray-900 dark:text-white"
+              >
+                Mr. Prince Buasu
+              </h4>
+              <p class="theme-organic mb-3 font-semibold">Compliance Manager</p>
+              <button
+                class="btn-secondary text-sm py-2 px-4 open-bio-modal"
+                data-name="Mr. Prince Buasu"
+                data-title="Compliance Manager"
+                data-image="../assets/images/team/team_LEGAL.jpg"
+                data-bio="Prince, an Environmental Health Officer with over 35 years industry experience, leads Jekora’s Compliance function as manager. He oversees the development, implementation and oversight of company initiatives to ensure alignment with the Metropolitan Assembly’s bye-laws on waste generation and collection. In this capacity, he oversees compliance audits, regulatory reporting and client education initiatives on client registration and waste generation.\n\nHaving began his career at the Tema Port Health (1985 - 2000), Prince played key roles in ensuring that port health regulations were enforced regularly through educational campaigns on port health regulations and inspections. Between 2001 - 2014, he worked with the Osu Klottey Sub-Metro (2001 - 2010) and Adenta Municipal Assembly (2011 - 2014) where he contributed to sanitation management, environmental compliance and community health initiatives while also strengthening local compliance structures.\n\nWith this extensive background, Prince brings unmatched expertise in oversight and environmental stewardship to Jekora Ventures Ltd. in his role as Compliance Manager."
               >
                 Read More
               </button>
@@ -602,7 +626,6 @@
           const targetElement = document.querySelector(targetSelector);
           if (!targetElement) return;
           try {
-            // Adjust path based on current page depth
             const pathPrefix = "../components/";
             const response = await fetch(`${pathPrefix}${componentName}.html`);
             if (response.ok) {
@@ -620,7 +643,6 @@
             loadComponent("stats", "#stats-placeholder-about"),
           ]);
 
-          // Re-initialize theme and navigation managers after components are loaded
           if (window.ThemeManager) {
             const themeManager = new ThemeManager();
             themeManager.init();
@@ -651,7 +673,6 @@
               });
               const targetPanel = document.getElementById(targetPanelId);
               if (targetPanel) {
-                // CORRECTED: Use 'grid' to maintain side-by-side layout
                 targetPanel.style.display = "grid";
                 targetPanel.classList.add("active");
               }
@@ -676,7 +697,7 @@
                   <div class="md:w-2/3">
                       <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
                           ${bio
-                            .split("\\n")
+                            .split("\\n\\n")
                             .map((p) => `<p>${p}</p>`)
                             .join("")}
                       </div>
