@@ -13,6 +13,18 @@
 
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/components.css" />
+
+    <style>
+      .modal-overlay {
+        transition: opacity 0.3s ease;
+      }
+      .modal-content {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .prose p {
+        margin-bottom: 1em;
+      }
+    </style>
   </head>
   <body class="bg-gray-50 dark:bg-gray-900">
     <div id="header-placeholder"></div>
@@ -26,14 +38,6 @@
           Transforming waste into valuable resources for a sustainable future in
           Ghana
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/services/waste-solutions/" class="btn-primary"
-            >Our Services</a
-          >
-          <a href="/contact/?service=General Inquiry" class="btn-danger"
-            >Get Quote</a
-          >
-        </div>
       </div>
     </section>
 
@@ -79,7 +83,19 @@
             >
               [CEO Name]
             </h4>
-            <p class="theme-organic mb-3 font-semibold">CEO</p>
+            <p class="theme-organic mb-2 font-semibold">CEO</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Sets the company's strategic direction and vision.
+            </p>
+            <button
+              class="btn-secondary text-sm py-2 px-4 open-bio-modal"
+              data-name="[CEO Name]"
+              data-title="CEO"
+              data-image="[PATH_TO_CEO_IMAGE]"
+              data-bio="[Full biography for the CEO...]"
+            >
+              Read More
+            </button>
           </div>
           <div
             class="team-card text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
@@ -94,7 +110,20 @@
             >
               Ing. Immanuel B. Nartey-Tokoli
             </h4>
-            <p class="theme-organic mb-3 font-semibold">Managing Director</p>
+            <p class="theme-organic mb-2 font-semibold">Managing Director</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Spearheads integrated waste management and resource recovery
+              operations.
+            </p>
+            <button
+              class="btn-secondary text-sm py-2 px-4 open-bio-modal"
+              data-name="Ing. Immanuel B. Nartey-Tokoli"
+              data-title="Managing Director"
+              data-image="assets/images/team/team_MD.jpg"
+              data-bio="Ing. Immanuel B. Nartey-Tokoli (IBN-T) holds an Msc. Degree in Mechanical Engineering from the Byelarusian National Technical University (June 1987). He is a corporate member of the Ghana Institution of Engineers (Registered No. 05066). IBN-T has spent over 30 of his 35 post-qualification years in both the public and private waste management sector, implementing local cost-effective business solutions using appropriate technology. He has been involved in the establishment and management of private waste management companies and held top management positions with professional experience in conducting baseline studies, managing mechanical workshops, transport deployment, and personnel administration. As the Managing Director of Jekora Ventures Ltd, he spearheads integrated waste management with source segregation of solid waste as a cornerstone to build resilience into waste valorisation for a circular economy. Through resource recovery, recycling, and composting, his work positively impacts environmental sanitation, public health, and climate change for sustainable development. Ing. Nartey-Tokoli also provides technical support services in Waste Management to the Environmental Service Providers Association (ESPA) of Ghana."
+            >
+              Read More
+            </button>
           </div>
         </div>
 
@@ -116,7 +145,19 @@
             >
               [Operations Manager Name]
             </h4>
-            <p class="theme-plastic mb-3 font-semibold">Operations Manager</p>
+            <p class="theme-plastic mb-2 font-semibold">Operations Manager</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Manages daily collection logistics and field teams.
+            </p>
+            <button
+              class="btn-secondary text-sm py-2 px-4 open-bio-modal"
+              data-name="[Operations Manager Name]"
+              data-title="Operations Manager"
+              data-image="[PATH_TO_OPERATIONS_MANAGER_IMAGE]"
+              data-bio="[Full biography for the Operations Manager...]"
+            >
+              Read More
+            </button>
           </div>
           <div
             class="team-card text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
@@ -131,11 +172,33 @@
             >
               [Operations Assistant Name]
             </h4>
-            <p class="theme-plastic mb-3 font-semibold">Operations Assistant</p>
+            <p class="theme-plastic mb-2 font-semibold">Operations Assistant</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+              Supports route optimization and supervises collection crews.
+            </p>
+            <button
+              class="btn-secondary text-sm py-2 px-4 open-bio-modal"
+              data-name="[Operations Assistant Name]"
+              data-title="Operations Assistant"
+              data-image="[PATH_TO_OPERATIONS_ASSISTANT_IMAGE]"
+              data-bio="[Full biography for the Operations Assistant...]"
+            >
+              Read More
+            </button>
           </div>
         </div>
       </div>
     </section>
+
+    <div
+      id="bio-modal"
+      class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50"
+    >
+      <div
+        id="bio-modal-content"
+        class="modal-content bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 transform scale-95 opacity-0"
+      ></div>
+    </div>
 
     <div id="footer-placeholder"></div>
 
@@ -144,36 +207,91 @@
     <script src="assets/js/components.js"></script>
 
     <script>
-      // Wait for the DOM to be fully loaded before running the script
       document.addEventListener("DOMContentLoaded", function () {
+        // --- Tab Switching Logic ---
         const tabs = document.querySelectorAll(".team-tab");
         const panels = document.querySelectorAll(".team-panel");
 
-        // Check if the necessary elements exist on the page
-        if (tabs.length > 0 && panels.length > 0) {
+        if (tabs.length > 0) {
           tabs.forEach((tab) => {
             tab.addEventListener("click", () => {
-              // Get the target panel ID from the tab's data-tab attribute
               const targetPanelId = `${tab.dataset.tab}-panel`;
-
-              // Deactivate all tabs
               tabs.forEach((t) => t.classList.remove("active"));
-              // Activate the clicked tab
               tab.classList.add("active");
-
-              // Hide all panels
               panels.forEach((panel) => {
                 panel.style.display = "none";
                 panel.classList.remove("active");
               });
-
-              // Show the target panel
               const targetPanel = document.getElementById(targetPanelId);
               if (targetPanel) {
                 targetPanel.style.display = "grid";
                 targetPanel.classList.add("active");
               }
             });
+          });
+        }
+
+        // --- Modal Logic ---
+        const modal = document.getElementById("bio-modal");
+        const modalContent = document.getElementById("bio-modal-content");
+
+        if (modal) {
+          function openModal(name, title, image, bio) {
+            modalContent.innerHTML = `
+              <div class="flex justify-between items-center border-b pb-3 dark:border-gray-600 mb-6">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white">${name}</h3>
+                  <button id="close-bio-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-white transition">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                  </button>
+              </div>
+              <div class="flex flex-col md:flex-row gap-8">
+                  <div class="md:w-1/3 flex-shrink-0">
+                      <img src="${image}" alt="${name}" class="w-full rounded-lg shadow-md">
+                      <p class="text-lg font-semibold theme-organic mt-4 text-center">${title}</p>
+                  </div>
+                  <div class="md:w-2/3">
+                      <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
+                          ${bio
+                            .split("\\n")
+                            .map((p) => `<p>${p}</p>`)
+                            .join("")}
+                      </div>
+                  </div>
+              </div>`;
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+              modalContent.classList.remove("scale-95", "opacity-0");
+            }, 50);
+
+            document
+              .getElementById("close-bio-modal")
+              .addEventListener("click", closeModal);
+          }
+
+          function closeModal() {
+            modalContent.classList.add("scale-95", "opacity-0");
+            setTimeout(() => {
+              modal.classList.add("hidden");
+              modalContent.innerHTML = "";
+            }, 300);
+          }
+
+          document.body.addEventListener("click", function (e) {
+            if (e.target.matches(".open-bio-modal")) {
+              const button = e.target;
+              openModal(
+                button.dataset.name,
+                button.dataset.title,
+                button.dataset.image,
+                button.dataset.bio
+              );
+            }
+          });
+
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+              closeModal();
+            }
           });
         }
       });
