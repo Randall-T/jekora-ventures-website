@@ -13,6 +13,17 @@
 
     <link rel="stylesheet" href="../assets/css/main.css" />
     <link rel="stylesheet" href="../assets/css/components.css" />
+    <style>
+      .modal-overlay {
+        transition: opacity 0.3s ease;
+      }
+      .modal-content {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .prose p {
+        margin-bottom: 1em;
+      }
+    </style>
   </head>
   <body class="bg-gray-50 dark:bg-gray-900">
     <div id="header-placeholder"></div>
@@ -203,8 +214,7 @@
         <p
           class="text-center text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto"
         >
-          Meet the dedicated and experienced professionals driving Jekora
-          Ventures' mission to create a sustainable future for Ghana.
+          Meet the dedicated professionals driving our mission.
         </p>
 
         <div
@@ -267,66 +277,67 @@
                 data-name="Ing. Immanuel B. Nartey-Tokoli"
                 data-title="Managing Director"
                 data-image="../assets/images/team/team_MD.jpg"
-                data-bio="Ing. Immanuel B. Nartey-Tokoli (IBN-T) holds an Msc. Degree in Mechanical Engineering from the Byelarusian National Technical University (June 1987). He is a corporate member of the Ghana Institution of Engineers (Registered No. 05066). IBN-T has spent over 30 of his 35 post-qualification years in both the public and private waste management sector, implementing local cost-effective business solutions using appropriate technology. He has been involved in the establishment and management of private waste management companies and held top management positions with professional experience in conducting baseline studies, managing mechanical workshops, transport deployment, and personnel administration. As the Managing Director of Jekora Ventures Ltd, he spearheads integrated waste management with source segregation of solid waste as a cornerstone to build resilience into waste valorisation for a circular economy. Through resource recovery, recycling, and composting, his work positively impacts environmental sanitation, public health, and climate change for sustainable development. Ing. Nartey-Tokoli also provides technical support services in Waste Management to the Environmental Service Providers Association (ESPA) of Ghana."
+                data-bio="Ing. Immanuel B. Nartey-Tokoli (IBN-T) holds an Msc. Degree in Mechanical Engineering from the Byelarusian National Technical University (June 1987). He is a corporate member of the Ghana Institution of Engineers (Registered No. 05066). IBN-T has spent over 30 of his 35 post-qualification years in both the public and private waste management sector, implementing local cost-effective business solutions using appropriate technology."
               >
                 Read More
               </button>
             </div>
           </div>
 
-          <div
-            id="operations-panel"
-            class="team-panel grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-          >
-            <div
-              class="team-card text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
-            >
-              <img
-                class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                src="../assets/images/team/operations_manager_placeholder.png"
-                alt="Operations Manager"
-              />
-              <h4
-                class="text-xl font-semibold mb-1 text-gray-900 dark:text-white"
+          <div id="operations-panel" class="team-panel" style="display: none">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div
+                class="team-card text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
               >
-                [Operations Manager Name]
-              </h4>
-              <p class="theme-plastic mb-3 font-semibold">Operations Manager</p>
-              <button
-                class="btn-secondary text-sm py-2 px-4 open-bio-modal"
-                data-name="[Operations Manager Name]"
-                data-title="Operations Manager"
-                data-image="../assets/images/team/operations_manager_placeholder.png"
-                data-bio="[A brief, professional bio for the Operations Manager, highlighting their experience in logistics, fleet management, and leading field teams to ensure timely and efficient waste collection.]"
+                <img
+                  class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                  src="[PATH_TO_OPERATIONS_MANAGER_IMAGE]"
+                  alt="Operations Manager"
+                />
+                <h4
+                  class="text-xl font-semibold mb-1 text-gray-900 dark:text-white"
+                >
+                  [Operations Manager Name]
+                </h4>
+                <p class="theme-plastic mb-3 font-semibold">
+                  Operations Manager
+                </p>
+                <button
+                  class="btn-secondary text-sm py-2 px-4 open-bio-modal"
+                  data-name="[Operations Manager Name]"
+                  data-title="Operations Manager"
+                  data-image="[PATH_TO_OPERATIONS_MANAGER_IMAGE]"
+                  data-bio="[Bio for the Operations Manager...]"
+                >
+                  Read More
+                </button>
+              </div>
+              <div
+                class="team-card text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
               >
-                Read More
-              </button>
-            </div>
-            <div
-              class="team-card text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
-            >
-              <img
-                class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                src="../assets/images/team/operations_supervisor_placeholder.png"
-                alt="Operations Supervisor"
-              />
-              <h4
-                class="text-xl font-semibold mb-1 text-gray-900 dark:text-white"
-              >
-                [Operations Supervisor Name]
-              </h4>
-              <p class="theme-plastic mb-3 font-semibold">
-                Operations Supervisor
-              </p>
-              <button
-                class="btn-secondary text-sm py-2 px-4 open-bio-modal"
-                data-name="[Operations Supervisor Name]"
-                data-title="Operations Supervisor"
-                data-image="../assets/images/team/operations_supervisor_placeholder.png"
-                data-bio="[A brief, professional bio for the Operations Supervisor, focused on their on-the-ground leadership, route optimization, and direct management of collection crews.]"
-              >
-                Read More
-              </button>
+                <img
+                  class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                  src="[PATH_TO_OPERATIONS_SUPERVISOR_IMAGE]"
+                  alt="Operations Supervisor"
+                />
+                <h4
+                  class="text-xl font-semibold mb-1 text-gray-900 dark:text-white"
+                >
+                  [Operations Supervisor Name]
+                </h4>
+                <p class="theme-plastic mb-3 font-semibold">
+                  Operations Supervisor
+                </p>
+                <button
+                  class="btn-secondary text-sm py-2 px-4 open-bio-modal"
+                  data-name="[Operations Supervisor Name]"
+                  data-title="Operations Supervisor"
+                  data-image="[PATH_TO_OPERATIONS_SUPERVISOR_IMAGE]"
+                  data-bio="[Bio for the Operations Supervisor...]"
+                >
+                  Read More
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -366,7 +377,7 @@
                   2003, we are a trusted partner for over 33,000 households and
                   businesses. We are accredited under the Fee and
                   Performance-Based Solid Waste Collection Franchise Agreement
-                  for the Korle Klotey, Adentan, and Weija Gbawe Municipal
+                  for the Korle Klottey, Adentan, and Weija Gbawe Municipal
                   areas.
                 </p>
               </div>
@@ -579,9 +590,119 @@
 
     <script src="../assets/js/theme.js"></script>
     <script src="../assets/js/navigation.js"></script>
-    <script src="../assets/js/components.js"></script>
     <script>
-      console.log("Testing component loading ...");
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- Component Loader for Header/Footer/Stats ---
+        const loadComponent = async (componentName, targetSelector) => {
+          const targetElement = document.querySelector(targetSelector);
+          if (!targetElement) return;
+          try {
+            const response = await fetch(`../components/${componentName}.html`);
+            if (response.ok) {
+              targetElement.innerHTML = await response.text();
+            }
+          } catch (error) {
+            console.error(`Failed to load ${componentName}`, error);
+          }
+        };
+
+        const loadAll = async () => {
+          await Promise.all([
+            loadComponent("header", "#header-placeholder"),
+            loadComponent("footer", "#footer-placeholder"),
+            loadComponent("stats", "#stats-placeholder-about"),
+          ]);
+
+          // Initialize scripts for loaded components
+          if (window.ThemeManager) new window.ThemeManager().init();
+          if (window.NavigationManager) new window.NavigationManager().init();
+        };
+
+        loadAll();
+
+        // --- Team Section Logic ---
+        const tabs = document.querySelectorAll(".team-tab");
+        const panels = document.querySelectorAll(".team-panel");
+        const modal = document.getElementById("bio-modal");
+        const modalContent = document.getElementById("bio-modal-content");
+
+        if (tabs.length > 0) {
+          tabs.forEach((tab) => {
+            tab.addEventListener("click", () => {
+              const targetPanelId = `${tab.dataset.tab}-panel`;
+              tabs.forEach((t) => t.classList.remove("active"));
+              tab.classList.add("active");
+              panels.forEach((panel) => {
+                panel.style.display = "none";
+                panel.classList.remove("active");
+              });
+              const targetPanel = document.getElementById(targetPanelId);
+              if (targetPanel) {
+                targetPanel.style.display = "block";
+                targetPanel.classList.add("active");
+              }
+            });
+          });
+        }
+
+        if (modal) {
+          const openModal = (name, title, image, bio) => {
+            modalContent.innerHTML = `
+              <div class="flex justify-between items-center border-b pb-3 dark:border-gray-600 mb-6">
+                  <h3 class="text-2xl font-bold text-gray-900 dark:text-white">${name}</h3>
+                  <button id="close-bio-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-white transition">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                  </button>
+              </div>
+              <div class="flex flex-col md:flex-row gap-8">
+                  <div class="md:w-1/3 flex-shrink-0">
+                      <img src="${image}" alt="${name}" class="w-full rounded-lg shadow-md">
+                      <p class="text-lg font-semibold theme-organic mt-4 text-center">${title}</p>
+                  </div>
+                  <div class="md:w-2/3">
+                      <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
+                          ${bio
+                            .split("\\n")
+                            .map((p) => `<p>${p}</p>`)
+                            .join("")}
+                      </div>
+                  </div>
+              </div>`;
+            modal.classList.remove("hidden");
+            setTimeout(
+              () => modalContent.classList.remove("scale-95", "opacity-0"),
+              50
+            );
+            document
+              .getElementById("close-bio-modal")
+              .addEventListener("click", closeModal);
+          };
+
+          const closeModal = () => {
+            modalContent.classList.add("scale-95", "opacity-0");
+            setTimeout(() => {
+              modal.classList.add("hidden");
+              modalContent.innerHTML = "";
+            }, 300);
+          };
+
+          document.body.addEventListener("click", (e) => {
+            if (e.target.matches(".open-bio-modal")) {
+              const btn = e.target;
+              openModal(
+                btn.dataset.name,
+                btn.dataset.title,
+                btn.dataset.image,
+                btn.dataset.bio
+              );
+            }
+          });
+
+          modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeModal();
+          });
+        }
+      });
     </script>
   </body>
 </html>
