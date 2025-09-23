@@ -284,7 +284,11 @@
             </div>
           </div>
 
-          <div id="operations-panel" class="team-panel" style="display: none">
+          <div
+            id="operations-panel"
+            class="team-panel hidden"
+            style="display: none"
+          >
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div
                 class="team-card text-center bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg"
@@ -377,7 +381,7 @@
                   2003, we are a trusted partner for over 33,000 households and
                   businesses. We are accredited under the Fee and
                   Performance-Based Solid Waste Collection Franchise Agreement
-                  for the Korle Klottey, Adentan, and Weija Gbawe Municipal
+                  for the Korle Klotey, Adentan, and Weija Gbawe Municipal
                   areas.
                 </p>
               </div>
@@ -590,6 +594,7 @@
 
     <script src="../assets/js/theme.js"></script>
     <script src="../assets/js/navigation.js"></script>
+
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // --- Component Loader for Header/Footer/Stats ---
@@ -597,7 +602,9 @@
           const targetElement = document.querySelector(targetSelector);
           if (!targetElement) return;
           try {
-            const response = await fetch(`../components/${componentName}.html`);
+            // Adjust path based on current page depth
+            const pathPrefix = "../components/";
+            const response = await fetch(`${pathPrefix}${componentName}.html`);
             if (response.ok) {
               targetElement.innerHTML = await response.text();
             }
@@ -613,9 +620,15 @@
             loadComponent("stats", "#stats-placeholder-about"),
           ]);
 
-          // Initialize scripts for loaded components
-          if (window.ThemeManager) new window.ThemeManager().init();
-          if (window.NavigationManager) new window.NavigationManager().init();
+          // Re-initialize theme and navigation managers after components are loaded
+          if (window.ThemeManager) {
+            const themeManager = new ThemeManager();
+            themeManager.init();
+          }
+          if (window.NavigationManager) {
+            const navigationManager = new NavigationManager();
+            navigationManager.init();
+          }
         };
 
         loadAll();
@@ -638,7 +651,8 @@
               });
               const targetPanel = document.getElementById(targetPanelId);
               if (targetPanel) {
-                targetPanel.style.display = "block";
+                // CORRECTED: Use 'grid' to maintain side-by-side layout
+                targetPanel.style.display = "grid";
                 targetPanel.classList.add("active");
               }
             });
