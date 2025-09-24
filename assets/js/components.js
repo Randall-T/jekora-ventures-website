@@ -70,8 +70,10 @@ class ComponentLoader {
 function initializeTeamSection() {
   const tabs = document.querySelectorAll(".team-tab");
   const panels = document.querySelectorAll(".team-panel");
+  const modal = document.getElementById("bio-modal");
+  const modalContent = document.getElementById("bio-modal-content");
 
-  if (!tabs.length) return;
+  if (!tabs.length || !modal) return; // Exit if team section elements aren't on the page
 
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
@@ -89,23 +91,82 @@ function initializeTeamSection() {
       }
     });
   });
+
+  const openModal = (name, title, image, bio) => {
+    modalContent.innerHTML = `
+      <div class="flex justify-between items-center border-b pb-3 dark:border-gray-600 mb-6">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white">${name}</h3>
+          <button id="close-bio-modal" class="text-gray-400 hover:text-gray-600 dark:hover:text-white transition">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+      </div>
+      <div class="flex flex-col md:flex-row gap-8">
+          <div class="md:w-1/3 flex-shrink-0">
+              <img src="${image}" alt="${name}" class="w-full rounded-lg shadow-md">
+              <p class="text-lg font-semibold theme-organic mt-4 text-center">${title}</p>
+          </div>
+          <div class="md:w-2/3">
+              <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 text-justify">
+                  ${bio
+                    .split("\\n\\n")
+                    .map((p) => `<p>${p}</p>`)
+                    .join("")}
+              </div>
+          </div>
+      </div>`;
+    modal.classList.remove("hidden");
+    setTimeout(
+      () => modalContent.classList.remove("scale-95", "opacity-0"),
+      50
+    );
+    document
+      .getElementById("close-bio-modal")
+      .addEventListener("click", closeModal);
+  };
+
+  const closeModal = () => {
+    modalContent.classList.add("scale-95", "opacity-0");
+    setTimeout(() => {
+      modal.classList.add("hidden");
+      modalContent.innerHTML = "";
+    }, 300);
+  };
+
+  document.body.addEventListener("click", (e) => {
+    if (e.target.matches(".open-bio-modal")) {
+      const btn = e.target;
+      openModal(
+        btn.dataset.name,
+        btn.dataset.title,
+        btn.dataset.image,
+        btn.dataset.bio
+      );
+    }
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
 }
 
 // ============================================
-// MAIN INITIALIZATION BLOCK - CORRECTED
+// MAIN INITIALIZATION BLOCK
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
   const onComponentsLoaded = () => {
-    // Initialize scripts that rely on loaded components
+    // Initialize scripts that run on EVERY page
     if (window.ThemeManager) new ThemeManager().init();
     if (window.NavigationManager) new NavigationManager().init();
 
-    // Initialize team section (will only run if it finds the elements)
+    // Initialize team section logic (it will only run if it finds the right elements)
     initializeTeamSection();
 
-    console.log("✅ All components and scripts initialized successfully.");
+    console.log(
+      "✅ Site-wide components and scripts initialized successfully."
+    );
   };
 
+  // Create and load components, which will trigger the callback above when done
   const componentLoader = new ComponentLoader(onComponentsLoaded);
   componentLoader.loadAllComponents();
 });
