@@ -734,7 +734,6 @@
             loadComponent("stats", "#stats-placeholder-about"),
           ]);
 
-          // CORRECTED: Initialize theme and navigation AFTER components are loaded
           if (window.ThemeManager) {
             const themeManager = new ThemeManager();
             themeManager.init();
@@ -747,30 +746,9 @@
 
         loadAll();
 
-        // --- Team Section Logic ---
-        const tabs = document.querySelectorAll(".team-tab");
-        const panels = document.querySelectorAll(".team-panel");
+        // --- Modal Logic (Tab logic has been moved) ---
         const modal = document.getElementById("bio-modal");
         const modalContent = document.getElementById("bio-modal-content");
-
-        if (tabs.length > 0) {
-          tabs.forEach((tab) => {
-            tab.addEventListener("click", () => {
-              const targetPanelId = `${tab.dataset.tab}-panel`;
-              tabs.forEach((t) => t.classList.remove("active"));
-              tab.classList.add("active");
-              panels.forEach((panel) => {
-                panel.style.display = "none";
-                panel.classList.remove("active");
-              });
-              const targetPanel = document.getElementById(targetPanelId);
-              if (targetPanel) {
-                targetPanel.style.display = "grid";
-                targetPanel.classList.add("active");
-              }
-            });
-          });
-        }
 
         if (modal) {
           const openModal = (name, title, image, bio) => {
