@@ -207,6 +207,108 @@
 
       <section class="mb-16">
         <h3
+          class="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center"
+        >
+          Our Approach
+        </h3>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            class="approach-card text-center service-card-organic dark:bg-green-900/20 p-6 rounded-lg border-t-4 border-green-500"
+          >
+            <div
+              class="w-16 h-16 icon-organic rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                ></path>
+              </svg>
+            </div>
+            <h4
+              class="text-xl font-semibold mb-3 text-gray-900 dark:text-white"
+            >
+              Innovation First
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              We continuously adopt new technologies and methods to improve
+              efficiency and environmental impact.
+            </p>
+          </div>
+
+          <div
+            class="approach-card text-center service-card-plastic dark:bg-blue-900/20 p-6 rounded-lg border-t-4 border-blue-500"
+          >
+            <div
+              class="w-16 h-16 icon-plastic rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                ></path>
+              </svg>
+            </div>
+            <h4
+              class="text-xl font-semibold mb-3 text-gray-900 dark:text-white"
+            >
+              Community Partnership
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              We work closely with communities to create sustainable solutions
+              that benefit everyone.
+            </p>
+          </div>
+
+          <div
+            class="approach-card text-center service-card-paper dark:bg-amber-900/20 p-6 rounded-lg border-t-4 border-amber-700"
+          >
+            <div
+              class="w-16 h-16 icon-paper rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
+              </svg>
+            </div>
+            <h4
+              class="text-xl font-semibold mb-3 text-gray-900 dark:text-white"
+            >
+              Environmental Care
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              Every decision we make prioritizes long-term environmental health
+              and sustainability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-16">
+        <h3
           class="text-3xl font-bold text-gray-900 dark:text-white mb-4 text-center"
         >
           Our Leadership Team
@@ -405,7 +507,7 @@
                   2003, we are a trusted partner for over 33,000 households and
                   businesses. We are accredited under the Fee and
                   Performance-Based Solid Waste Collection Franchise Agreement
-                  for the Korle Klottey, Adentan, and Weija Gbawe Municipal
+                  for the Korle Klotey, Adentan, and Weija Gbawe Municipal
                   areas.
                 </p>
               </div>
@@ -643,6 +745,7 @@
             loadComponent("stats", "#stats-placeholder-about"),
           ]);
 
+          // CORRECTED: Initialize theme and navigation AFTER components are loaded
           if (window.ThemeManager) {
             const themeManager = new ThemeManager();
             themeManager.init();
