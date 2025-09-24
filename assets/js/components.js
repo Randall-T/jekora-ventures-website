@@ -68,11 +68,9 @@ class ComponentLoader {
 // TEAM MODAL AND TABS LOGIC
 // ============================================
 function initializeTeamSection() {
-  // --- Tab Switching Logic ---
   const tabs = document.querySelectorAll(".team-tab");
   const panels = document.querySelectorAll(".team-panel");
 
-  // Exit if team section elements aren't on the page
   if (!tabs.length) return;
 
   tabs.forEach((tab) => {
@@ -94,23 +92,20 @@ function initializeTeamSection() {
 }
 
 // ============================================
-// MAIN INITIALIZATION BLOCK
+// MAIN INITIALIZATION BLOCK - CORRECTED
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
   const onComponentsLoaded = () => {
-    // Initialize scripts that run on EVERY page
+    // Initialize scripts that rely on loaded components
     if (window.ThemeManager) new ThemeManager().init();
     if (window.NavigationManager) new NavigationManager().init();
 
-    // Initialize team section logic (it will only run if it finds the right elements)
+    // Initialize team section (will only run if it finds the elements)
     initializeTeamSection();
 
-    console.log(
-      "✅ Site-wide components and scripts initialized successfully."
-    );
+    console.log("✅ All components and scripts initialized successfully.");
   };
 
-  // Create and load components, which will trigger the callback above when done
   const componentLoader = new ComponentLoader(onComponentsLoaded);
   componentLoader.loadAllComponents();
 });
