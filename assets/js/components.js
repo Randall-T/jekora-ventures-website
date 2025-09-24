@@ -86,50 +86,16 @@ class ComponentLoader {
   }
 }
 
-// CORRECTED: This is the definitive initialization block.
-document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(() => {
-    const onComponentsLoaded = () => {
-      // 1. Initialize ThemeManager
-      window.themeManager = new ThemeManager();
-      window.themeManager.init(); // Manually call init() now
-
-      // 2. Initialize NavigationManager
-      window.navigationManager = new NavigationManager();
-      window.navigationManager.init(); // Manually call init() now
-
-      // 3. Initialize Team Section Tabs & Modal
-      initializeTeamSection(); // Initialize the team section functionality
-
-      console.log("✅ All components and scripts initialized successfully.");
-    };
-
-    // Create and load components, passing in the function to run after.
-    window.componentLoader = new ComponentLoader(onComponentsLoaded);
-    window.componentLoader.loadAllComponents();
-  }, 100);
-});
-
 // ============================================
 // TEAM MODAL AND TABS LOGIC
 // ============================================
-
-// Add a flag to ensure this only runs once
-let isTeamSectionInitialized = false;
-
 function initializeTeamSection() {
-  // If it's already been initialized, do nothing.
-  if (isTeamSectionInitialized) {
-    return;
-  }
-
   const tabs = document.querySelectorAll(".team-tab");
   const panels = document.querySelectorAll(".team-panel");
   const modal = document.getElementById("bio-modal");
   const modalContent = document.getElementById("bio-modal-content");
 
-  // Don't run if the elements aren't on the page
-  if (!tabs.length || !modal) return;
+  if (!tabs.length || !modal) return; // Don't run if the elements aren't on the page
 
   // --- Tab Switching Logic ---
   tabs.forEach((tab) => {
@@ -210,28 +176,30 @@ function initializeTeamSection() {
       closeModal();
     }
   });
-
-  // Set the flag to true to prevent this from running again
-  isTeamSectionInitialized = true;
 }
 
-// Modify the existing onComponentsLoaded function to call our new function
+// THIS IS THE SINGLE, CORRECT INITIALIZATION BLOCK
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     const onComponentsLoaded = () => {
+      // 1. Initialize ThemeManager
       window.themeManager = new ThemeManager();
       window.themeManager.init();
 
+      // 2. Initialize NavigationManager
       window.navigationManager = new NavigationManager();
       window.navigationManager.init();
 
-      // ADD THIS LINE
+      // 3. Initialize Team Section (will only run if on the correct page)
       initializeTeamSection();
 
       console.log("✅ All components and scripts initialized successfully.");
     };
 
+    // Create and load components, which will trigger the callback above when done
     window.componentLoader = new ComponentLoader(onComponentsLoaded);
     window.componentLoader.loadAllComponents();
   }, 100);
 });
+
+// The redundant block that was at the end of the file has been removed.
