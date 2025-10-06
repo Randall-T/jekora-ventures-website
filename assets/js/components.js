@@ -201,14 +201,22 @@ function initializeTeamSection() {
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
   const onComponentsLoaded = () => {
-    // Initialize ThemeManager
-    if (window.ThemeManager) {
-      new ThemeManager().init();
+    // Initialize ThemeManager (same way as diagnostic version)
+    if (typeof ThemeManager !== "undefined") {
+      try {
+        new ThemeManager().init();
+      } catch (error) {
+        console.error("Error initializing ThemeManager:", error);
+      }
     }
 
-    // Initialize NavigationManager
-    if (window.NavigationManager) {
-      new NavigationManager().init();
+    // Initialize NavigationManager (same way as diagnostic version)
+    if (typeof NavigationManager !== "undefined") {
+      try {
+        new NavigationManager().init();
+      } catch (error) {
+        console.error("Error initializing NavigationManager:", error);
+      }
     }
 
     // Initialize team section (only runs if elements exist)
