@@ -65,7 +65,7 @@ class ComponentLoader {
 }
 
 // ============================================
-// TEAM MODAL AND TABS LOGIC
+// TEAM MODAL AND TABS LOGIC - IMPROVED
 // ============================================
 function initializeTeamSection() {
   const tabs = document.querySelectorAll(".team-tab");
@@ -73,26 +73,66 @@ function initializeTeamSection() {
   const modal = document.getElementById("bio-modal");
   const modalContent = document.getElementById("bio-modal-content");
 
-  if (!tabs.length || !modal) return; // Exit if team section elements aren't on the page
+  // Exit if team section elements aren't on the page
+  if (!tabs.length || !modal) {
+    console.log(
+      "ℹ️ Team section not found on this page, skipping initialization"
+    );
+    return;
+  }
 
+  console.log("🔧 Initializing team tabs and modals...");
+
+  // FIXED: Tab switching with proper state management
   tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
+    tab.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
       const targetPanelId = `${tab.dataset.tab}-panel`;
+
+      console.log(`Switching to panel: ${targetPanelId}`);
+
+      // Remove active from all tabs
       tabs.forEach((t) => t.classList.remove("active"));
+
+      // Add active to clicked tab
       tab.classList.add("active");
+
+      // Hide all panels completely
       panels.forEach((panel) => {
         panel.style.display = "none";
         panel.classList.remove("active");
       });
+
+      // Show target panel
       const targetPanel = document.getElementById(targetPanelId);
       if (targetPanel) {
         targetPanel.style.display = "grid";
         targetPanel.classList.add("active");
+        console.log(`✅ Panel ${targetPanelId} is now visible`);
+      } else {
+        console.error(`❌ Panel ${targetPanelId} not found!`);
       }
     });
   });
 
+  // Set first panel as active on load
+  if (panels.length > 0) {
+    panels[0].style.display = "grid";
+    panels[0].classList.add("active");
+    console.log("✅ First panel set as default");
+  }
+
+  // Modal functionality
   const openModal = (name, title, image, bio) => {
+    // Handle both \n\n and actual line breaks
+    const formattedBio = bio
+      .replace(/\\n\\n/g, "</p><p>")
+      .replace(/\n\n/g, "</p><p>")
+      .replace(/\\n/g, "<br>")
+      .replace(/\n/g, "<br>");
+
     modalContent.innerHTML = `
       <div class="flex justify-between items-center border-b pb-3 dark:border-gray-600 mb-6">
           <h3 class="text-2xl font-bold text-gray-900 dark:text-white">${name}</h3>
@@ -107,24 +147,24 @@ function initializeTeamSection() {
           </div>
           <div class="md:w-2/3">
               <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 text-justify">
-                  ${bio
-                    .split("\\n\\n")
-                    .map((p) => `<p>${p}</p>`)
-                    .join("")}
+                  <p>${formattedBio}</p>
               </div>
           </div>
       </div>`;
+
     modal.classList.remove("hidden");
-    setTimeout(
-      () => modalContent.classList.remove("scale-95", "opacity-0"),
-      50
-    );
+    setTimeout(() => {
+      modalContent.classList.remove("scale-95", "opacity-0");
+      modalContent.classList.add("scale-100", "opacity-100");
+    }, 10);
+
     document
       .getElementById("close-bio-modal")
       .addEventListener("click", closeModal);
   };
 
   const closeModal = () => {
+    modalContent.classList.remove("scale-100", "opacity-100");
     modalContent.classList.add("scale-95", "opacity-0");
     setTimeout(() => {
       modal.classList.add("hidden");
@@ -132,9 +172,18 @@ function initializeTeamSection() {
     }, 300);
   };
 
+  // Event delegation for modal buttons
   document.body.addEventListener("click", (e) => {
-    if (e.target.matches(".open-bio-modal")) {
-      const btn = e.target;
+    if (
+      e.target.matches(".open-bio-modal") ||
+      e.target.closest(".open-bio-modal")
+    ) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const btn = e.target.matches(".open-bio-modal")
+        ? e.target
+        : e.target.closest(".open-bio-modal");
       openModal(
         btn.dataset.name,
         btn.dataset.title,
@@ -144,29 +193,53 @@ function initializeTeamSection() {
     }
   });
 
+  // Close modal when clicking overlay
   modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
   });
+
+  // Close modal with Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+      closeModal();
+    }
+  });
+
+  console.log("✅ Team section initialized successfully");
 }
 
 // ============================================
 // MAIN INITIALIZATION BLOCK
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
-  const onComponentsLoaded = () => {
-    // Initialize scripts that run on EVERY page
-    if (window.ThemeManager) new ThemeManager().init();
-    if (window.NavigationManager) new NavigationManager().init();
+  console.log("🚀 Starting component initialization...");
 
-    // Initialize team section logic (it will only run if it finds the right elements)
+  const onComponentsLoaded = () => {
+    console.log("📦 Components loaded, initializing managers...");
+
+    // Initialize ThemeManager
+    if (window.ThemeManager) {
+      new ThemeManager().init();
+      console.log("✅ ThemeManager initialized");
+    } else {
+      console.warn("⚠️ ThemeManager not found");
+    }
+
+    // Initialize NavigationManager
+    if (window.NavigationManager) {
+      new NavigationManager().init();
+      console.log("✅ NavigationManager initialized");
+    } else {
+      console.warn("⚠️ NavigationManager not found");
+    }
+
+    // Initialize team section logic (will only run if elements exist)
     initializeTeamSection();
 
-    console.log(
-      "✅ Site-wide components and scripts initialized successfully."
-    );
+    console.log("✅ All components and scripts initialized successfully");
   };
 
-  // Create and load components, which will trigger the callback above when done
+  // Create and load components
   const componentLoader = new ComponentLoader(onComponentsLoaded);
   componentLoader.loadAllComponents();
 });
