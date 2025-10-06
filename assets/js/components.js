@@ -60,7 +60,9 @@ class ComponentLoader {
     ];
 
     await Promise.all(componentPromises);
-    this.onLoadCallback();
+    setTimeout(() => {
+      this.onLoadCallback();
+    }, 100);
   }
 }
 
@@ -76,7 +78,10 @@ function initializeTeamSection() {
   if (!tabs.length || !modal) return; // Exit if team section elements aren't on the page
 
   tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
+    tab.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
       const targetPanelId = `${tab.dataset.tab}-panel`;
       tabs.forEach((t) => t.classList.remove("active"));
       tab.classList.add("active");
@@ -92,7 +97,18 @@ function initializeTeamSection() {
     });
   });
 
+  if (panels.length > 0) {
+    panels[0].style.display = "grid";
+    panels[0].classList.add("active");
+  }
+
   const openModal = (name, title, image, bio) => {
+    const formattedBio = bio
+      .replace(/\\n\\n/g, "</p><p>")
+      .replace(/\n\n/g, "</p><p>")
+      .replace(/\\n/g, "<br>")
+      .replace(/\n/g, "<br>");
+
     modalContent.innerHTML = `
       <div class="flex justify-between items-center border-b pb-3 dark:border-gray-600 mb-6">
           <h3 class="text-2xl font-bold text-gray-900 dark:text-white">${name}</h3>
@@ -107,24 +123,23 @@ function initializeTeamSection() {
           </div>
           <div class="md:w-2/3">
               <div class="prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 text-justify">
-                  ${bio
-                    .split("\\n\\n")
-                    .map((p) => `<p>${p}</p>`)
-                    .join("")}
+                   <p>${formattedBio}</p>
               </div>
           </div>
       </div>`;
     modal.classList.remove("hidden");
-    setTimeout(
-      () => modalContent.classList.remove("scale-95", "opacity-0"),
-      50
-    );
+    setTimeout(() => {
+      modalContent.classList.remove("scale-95", "opacity-0");
+      modalContent.classList.add("scale-100", "opacity-100");
+    }, 10);
+
     document
       .getElementById("close-bio-modal")
       .addEventListener("click", closeModal);
   };
 
   const closeModal = () => {
+    modalContent.classList.remove("scale-100", "opacity-100");
     modalContent.classList.add("scale-95", "opacity-0");
     setTimeout(() => {
       modal.classList.add("hidden");
@@ -133,8 +148,16 @@ function initializeTeamSection() {
   };
 
   document.body.addEventListener("click", (e) => {
-    if (e.target.matches(".open-bio-modal")) {
-      const btn = e.target;
+    if (
+      e.target.matches(".open-bio-modal") ||
+      e.target.closest(".open-bio-modal")
+    ) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const btn = e.target.matches(".open-bio-modal")
+        ? e.target
+        : e.target.closest(".open-bio-modal");
       openModal(
         btn.dataset.name,
         btn.dataset.title,
@@ -147,6 +170,12 @@ function initializeTeamSection() {
   modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
   });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+      closeModal();
+    }
+  });
 }
 
 // ============================================
@@ -155,10 +184,23 @@ function initializeTeamSection() {
 document.addEventListener("DOMContentLoaded", () => {
   const onComponentsLoaded = () => {
     // Initialize scripts that run on EVERY page
-    if (window.ThemeManager) new ThemeManager().init();
-    if (window.NavigationManager) new NavigationManager().init();
+    if (typeof ThemeManager !== "undefined") {
+      try {
+        new ThemeManager().init();
+      } catch (error) {
+        console.error("Error initializing ThemeManager:", error);
+      }
+    }
 
-    // Initialize team section logic (it will only run if it finds the right elements)
+    if (typeof NavigationManager !== "undefined") {
+      try {
+        new NavigationManager().init();
+      } catch (error) {
+        console.error("Error initializing NavigationManager:", error);
+      }
+    }
+
+    // Initialize team section logic (it will only run if it elements exist)
     initializeTeamSection();
 
     console.log(
