@@ -1,8 +1,4 @@
 // ============================================
-// UPDATED components.js - DIAGNOSTIC VERSION
-// ============================================
-
-// ============================================
 // FAVICON INJECTOR
 // ============================================
 function addFavicon() {
@@ -43,19 +39,13 @@ class ComponentLoader {
 
   async loadComponent(componentName, targetSelector) {
     const targetElement = document.querySelector(targetSelector);
-    if (!targetElement) {
-      console.log(
-        `⚠️ Target element ${targetSelector} not found for ${componentName}`
-      );
-      return;
-    }
+    if (!targetElement) return;
     try {
       const response = await fetch(
         `${this.componentsPath}${componentName}.html`
       );
       if (!response.ok) throw new Error(`Failed to load ${componentName}`);
       targetElement.innerHTML = await response.text();
-      console.log(`✅ Loaded component: ${componentName}`);
     } catch (error) {
       console.error(`Error loading component ${componentName}:`, error);
     }
@@ -70,9 +60,8 @@ class ComponentLoader {
     ];
 
     await Promise.all(componentPromises);
-    console.log("✅ All components loaded");
 
-    // IMPORTANT: Wait a bit for DOM to settle before calling callback
+    // CRITICAL: Wait for DOM to settle before initializing managers
     setTimeout(() => {
       this.onLoadCallback();
     }, 100);
@@ -80,7 +69,7 @@ class ComponentLoader {
 }
 
 // ============================================
-// TEAM MODAL AND TABS LOGIC - IMPROVED
+// TEAM MODAL AND TABS LOGIC
 // ============================================
 function initializeTeamSection() {
   const tabs = document.querySelectorAll(".team-tab");
@@ -89,28 +78,15 @@ function initializeTeamSection() {
   const modalContent = document.getElementById("bio-modal-content");
 
   // Exit if team section elements aren't on the page
-  if (!tabs.length || !modal) {
-    console.log(
-      "ℹ️ Team section not found on this page, skipping initialization"
-    );
-    return;
-  }
+  if (!tabs.length || !modal) return;
 
-  console.log(
-    `🔧 Initializing team tabs (${tabs.length} tabs, ${panels.length} panels)...`
-  );
-
-  // FIXED: Tab switching with proper state management
-  tabs.forEach((tab, index) => {
+  // Tab switching functionality
+  tabs.forEach((tab) => {
     tab.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
 
       const targetPanelId = `${tab.dataset.tab}-panel`;
-
-      console.log(
-        `Tab ${index} clicked: ${tab.dataset.tab} -> ${targetPanelId}`
-      );
 
       // Remove active from all tabs
       tabs.forEach((t) => t.classList.remove("active"));
@@ -118,7 +94,7 @@ function initializeTeamSection() {
       // Add active to clicked tab
       tab.classList.add("active");
 
-      // Hide all panels completely
+      // Hide all panels
       panels.forEach((panel) => {
         panel.style.display = "none";
         panel.classList.remove("active");
@@ -129,9 +105,6 @@ function initializeTeamSection() {
       if (targetPanel) {
         targetPanel.style.display = "grid";
         targetPanel.classList.add("active");
-        console.log(`✅ Panel ${targetPanelId} is now visible`);
-      } else {
-        console.error(`❌ Panel ${targetPanelId} not found!`);
       }
     });
   });
@@ -140,12 +113,10 @@ function initializeTeamSection() {
   if (panels.length > 0) {
     panels[0].style.display = "grid";
     panels[0].classList.add("active");
-    console.log(`✅ First panel (${panels[0].id}) set as default`);
   }
 
   // Modal functionality
   const openModal = (name, title, image, bio) => {
-    // Handle both \n\n and actual line breaks
     const formattedBio = bio
       .replace(/\\n\\n/g, "</p><p>")
       .replace(/\n\n/g, "</p><p>")
@@ -223,68 +194,29 @@ function initializeTeamSection() {
       closeModal();
     }
   });
-
-  console.log("✅ Team section initialized successfully");
 }
 
 // ============================================
 // MAIN INITIALIZATION BLOCK
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("🚀 Starting component initialization...");
-  console.log("📍 Current path:", window.location.pathname);
-
   const onComponentsLoaded = () => {
-    console.log("📦 Components loaded, initializing managers...");
-
-    // Check if header was loaded (where theme toggle should be)
-    const headerPlaceholder = document.getElementById("header-placeholder");
-    if (headerPlaceholder && headerPlaceholder.innerHTML.trim()) {
-      console.log("✅ Header component loaded");
-
-      // Check for theme toggle button
-      const themeToggle = document.getElementById("theme-toggle");
-      const themeToggleMobile = document.getElementById("theme-toggle-mobile");
-      console.log("Theme toggle desktop found:", !!themeToggle);
-      console.log("Theme toggle mobile found:", !!themeToggleMobile);
-    } else {
-      console.warn("⚠️ Header component empty or not loaded");
-    }
-
     // Initialize ThemeManager
-    if (typeof ThemeManager !== "undefined") {
-      try {
-        const themeManager = new ThemeManager();
-        themeManager.init();
-        console.log("✅ ThemeManager initialized");
-      } catch (error) {
-        console.error("❌ Error initializing ThemeManager:", error);
-      }
-    } else {
-      console.error(
-        "❌ ThemeManager class not found - theme.js may not be loaded"
-      );
+    if (window.ThemeManager) {
+      new ThemeManager().init();
     }
 
     // Initialize NavigationManager
-    if (typeof NavigationManager !== "undefined") {
-      try {
-        const navManager = new NavigationManager();
-        navManager.init();
-        console.log("✅ NavigationManager initialized");
-      } catch (error) {
-        console.error("❌ Error initializing NavigationManager:", error);
-      }
-    } else {
-      console.error(
-        "❌ NavigationManager class not found - navigation.js may not be loaded"
-      );
+    if (window.NavigationManager) {
+      new NavigationManager().init();
     }
 
-    // Initialize team section logic (will only run if elements exist)
+    // Initialize team section (only runs if elements exist)
     initializeTeamSection();
 
-    console.log("✅ All components and scripts initialized successfully");
+    console.log(
+      "✅ Site-wide components and scripts initialized successfully."
+    );
   };
 
   // Create and load components
