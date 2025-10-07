@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Read the latest news, insights, and updates from Jekora Ventures Limited on sustainable waste management and environmental solutions in Ghana."
+    />
+    <title>Blog - Jekora Ventures Limited</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg hero-pattern text-white py-20">
+      <div class="max-w-4xl mx-auto px-4 text-center fade-in">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">Our Blog</h1>
+        <p class="text-lg md:text-xl text-green-100">
+          Insights, stories, and updates on sustainable waste management in
+          Ghana
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section
+      class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
+    >
+      <div class="max-w-6xl mx-auto px-4 py-6">
+        <div class="flex flex-wrap gap-4 items-center justify-between">
+          <div class="flex flex-wrap gap-2">
+            <button class="filter-btn active" data-category="all">
+              All Posts
+            </button>
+            <button class="filter-btn" data-category="sustainability">
+              Sustainability
+            </button>
+            <button class="filter-btn" data-category="recycling">
+              Recycling
+            </button>
+            <button class="filter-btn" data-category="community">
+              Community
+            </button>
+            <button class="filter-btn" data-category="innovation">
+              Innovation
+            </button>
+            <button class="filter-btn" data-category="news">
+              Company News
+            </button>
+          </div>
+          <div class="flex items-center gap-2">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search posts..."
+              class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="max-w-6xl mx-auto px-4 py-16">
+      <div
+        id="blog-posts-container"
+        class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        <!-- Blog posts will be dynamically inserted here -->
+      </div>
+
+      <!-- No Results Message -->
+      <div id="no-results" class="hidden text-center py-16">
+        <svg
+          class="w-24 h-24 mx-auto text-gray-400 mb-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+          No posts found
+        </h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Try adjusting your filters or search terms
+        </p>
+      </div>
+
+      <!-- Loading State -->
+      <div id="loading-state" class="text-center py-16">
+        <div
+          class="animate-spin rounded-full h-16 w-16 border-b-2 border-green-500 mx-auto"
+        ></div>
+        <p class="mt-4 text-gray-600 dark:text-gray-400">Loading posts...</p>
+      </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../assets/js/theme.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/blog.js"></script>
+  </body>
+</html>
