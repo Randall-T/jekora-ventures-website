@@ -39,6 +39,9 @@ class BlogImageHandler {
       img.style.cursor = "pointer";
       img.classList.add("hover:opacity-90", "transition-opacity");
 
+      // Add visual indicator that image is clickable
+      this.addClickIndicator(img);
+
       img.addEventListener("click", () => {
         this.openLightbox(index);
       });
@@ -56,6 +59,56 @@ class BlogImageHandler {
 
     // Group consecutive images into galleries if 3+
     this.createImageGalleries(proseContent);
+
+    // Add hint if multiple images exist
+    if (this.galleryImages.length > 1) {
+      this.addImageNavigationHint();
+    }
+  }
+
+  addClickIndicator(img) {
+    // Wrap image in a container if not already in figure
+    let container = img.closest("figure");
+    if (!container) {
+      container = img.parentElement;
+    }
+
+    // Add a zoom icon overlay that appears on hover
+    const overlay = document.createElement("div");
+    overlay.className = "image-click-indicator";
+    overlay.innerHTML = `
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+            </svg>
+            <span class="text-white text-sm font-medium mt-2">Click to enlarge</span>
+        `;
+
+    // Make container position relative if it's a figure
+    if (container.tagName === "FIGURE") {
+      container.style.position = "relative";
+      container.appendChild(overlay);
+    }
+  }
+
+  addImageNavigationHint() {
+    const proseContent = document.querySelector(".prose");
+    if (!proseContent) return;
+
+    // Check if hint already exists
+    if (document.querySelector(".image-navigation-hint")) return;
+
+    // Add a subtle hint at the start of the article
+    const hint = document.createElement("div");
+    hint.className = "image-navigation-hint";
+    hint.innerHTML = `
+            <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <span>This article contains ${this.galleryImages.length} images. Click any image to view in fullscreen.</span>
+        `;
+
+    // Insert at the beginning of prose content
+    proseContent.insertBefore(hint, proseContent.firstChild);
   }
 
   createImageGalleries(container) {
