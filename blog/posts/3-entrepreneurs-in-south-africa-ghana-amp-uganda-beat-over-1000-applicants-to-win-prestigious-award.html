@@ -276,33 +276,16 @@
 
       <!-- Navigation to other posts -->
       <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-        <div class="grid md:grid-cols-2 gap-8">
-          <a
-            href="[PREVIOUS POST URL]"
-            class="group p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition"
-          >
-            <span class="text-sm text-gray-500 dark:text-gray-400 mb-2 block"
-              >← Previous Post</span
-            >
-            <h3
-              class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition"
-            >
-              [PREVIOUS POST TITLE]
-            </h3>
-          </a>
-          <a
-            href="[NEXT POST URL]"
-            class="group p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition text-right"
-          >
-            <span class="text-sm text-gray-500 dark:text-gray-400 mb-2 block"
-              >Next Post →</span
-            >
-            <h3
-              class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition"
-            >
-              [NEXT POST TITLE]
-            </h3>
-          </a>
+        <div class="post-navigation-container">
+          <!-- Previous/Next navigation will be inserted here by JavaScript -->
+          <div class="text-center py-8">
+            <div
+              class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500 mx-auto"
+            ></div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+              Loading navigation...
+            </p>
+          </div>
         </div>
       </div>
     </article>
@@ -315,9 +298,16 @@
         >
           Related Posts
         </h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Related post cards will be similar to main blog page cards -->
-          <!-- These can be populated dynamically based on tags/category -->
+        <div class="related-posts-container">
+          <!-- Related post cards will be inserted here by JavaScript -->
+          <div class="text-center py-8">
+            <div
+              class="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto"
+            ></div>
+            <p class="text-gray-500 dark:text-gray-400 mt-4">
+              Finding related posts...
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -345,5 +335,7 @@
     <script src="../../assets/js/navigation.js"></script>
     <script src="../../assets/js/components.js"></script>
     <script src="../../assets/js/blog-images.js"></script>
+    <script src="../../assets/js/blog.js"></script>
+    <script src="../../assets/js/blog-navigation.js"></script>
   </body>
 </html>

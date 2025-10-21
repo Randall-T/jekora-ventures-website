@@ -981,3 +981,33 @@ figure:hover .image-click-indicator {
 .gallery-item:hover .absolute {
   opacity: 1;
 }
+
+/* Post Navigation Styles */
+.post-navigation-container a {
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.post-navigation-container a:hover {
+  transform: translateY(-4px);
+}
+
+/* Related Posts hover effect */
+.related-posts-container article {
+  transition: all 0.3s ease;
+}
+
+.related-posts-container article:hover {
+  transform: translateY(-4px);
+}
+
+/* Loading states */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
