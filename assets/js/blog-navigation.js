@@ -2,127 +2,114 @@
 // BLOG POST NAVIGATION & RELATED POSTS
 // ============================================
 
-
 class BlogPostNavigation {
-    constructor() {
-        this.allPosts = [];
-        this.currentPost = null;
-        this.currentSlug = this.getCurrentSlug();
+  constructor() {
+    this.allPosts = [];
+    this.currentPost = null;
+    this.currentSlug = this.getCurrentSlug();
+  }
+
+  getCurrentSlug() {
+    // Extract slug from URL
+    // URL format: blog/posts/post-slug.html
+    const path = window.location.pathname;
+    const match = path.match(/\/posts\/([^/]+)\.html$/);
+    return match ? match[1] : null;
+  }
+
+  async init() {
+    if (!this.currentSlug) {
+      console.log("Not on a blog post page");
+      return;
     }
 
+    console.log("🔗 Initializing post navigation...");
 
-    getCurrentSlug() {
-        // Extract slug from URL
-        // URL format: blog/posts/post-slug.html
-        const path = window.location.pathname;
-        const match = path.match(/\/posts\/([^/]+)\.html$/);
-        return match ? match[1] : null;
+    // Load all posts data
+    await this.loadPostsData();
+
+    // Find current post
+    this.currentPost = this.allPosts.find(
+      (post) => post.slug === this.currentSlug
+    );
+
+    if (!this.currentPost) {
+      console.warn("Current post not found in posts data");
+      return;
     }
 
+    // Generate navigation
+    this.generatePrevNextNav();
+    this.generateRelatedPosts();
 
-    async init() {
-        if (!this.currentSlug) {
-            console.log('Not on a blog post page');
-            return;
+    console.log("✅ Post navigation initialized");
+  }
+
+  async loadPostsData() {
+    // In a real setup, this would load from a JSON file or API
+    // For now, we'll use the blogPosts array from blog.js
+
+    // Check if blogPosts is available globally
+    if (typeof blogPosts !== "undefined") {
+      this.allPosts = [...blogPosts];
+    } else {
+      // If not available, try to fetch from a JSON file
+      try {
+        const response = await fetch("../../blog-posts-data.json");
+        if (response.ok) {
+          const data = await response.json();
+          this.allPosts = data.posts || data;
         }
-
-
-        console.log('🔗 Initializing post navigation...');
-
-
-        // Load all posts data
-        await this.loadPostsData();
-
-
-        // Find current post
-        this.currentPost = this.allPosts.find(post => post.slug === this.currentSlug);
-
-
-        if (!this.currentPost) {
-            console.warn('Current post not found in posts data');
-            return;
-        }
-
-
-        // Generate navigation
-        this.generatePrevNextNav();
-        this.generateRelatedPosts();
-
-
-        console.log('✅ Post navigation initialized');
+      } catch (error) {
+        console.warn("Could not load posts data:", error);
+        // Fallback: try to load from blog.js script
+        await this.loadBlogScript();
+      }
     }
 
+    // Sort by date (newest first)
+    this.allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  }
 
-    async loadPostsData() {
-        // In a real setup, this would load from a JSON file or API
-        // For now, we'll use the blogPosts array from blog.js
-        
-        // Check if blogPosts is available globally
-        if (typeof blogPosts !== 'undefined') {
-            this.allPosts = [...blogPosts];
+  async loadBlogScript() {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = "../../assets/js/blog.js";
+      script.onload = () => {
+        if (typeof blogPosts !== "undefined") {
+          this.allPosts = [...blogPosts];
+          resolve();
         } else {
-            // If not available, try to fetch from a JSON file
-            try {
-                const response = await fetch('../../blog-posts-data.json');
-                if (response.ok) {
-                    const data = await response.json();
-                    this.allPosts = data.posts || data;
-                }
-            } catch (error) {
-                console.warn('Could not load posts data:', error);
-                // Fallback: try to load from blog.js script
-                await this.loadBlogScript();
-            }
+          reject(new Error("blogPosts not defined"));
         }
+      };
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  }
 
+  generatePrevNextNav() {
+    const currentIndex = this.allPosts.findIndex(
+      (post) => post.slug === this.currentSlug
+    );
 
-        // Sort by date (newest first)
-        this.allPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    if (currentIndex === -1) return;
+
+    const prevPost = this.allPosts[currentIndex + 1]; // Next in array is older
+    const nextPost = this.allPosts[currentIndex - 1]; // Previous in array is newer
+
+    // Find the navigation container
+    const navContainer = document.querySelector(".post-navigation-container");
+    if (!navContainer) {
+      console.warn("Navigation container not found");
+      return;
     }
 
+    let html = '<div class="grid md:grid-cols-2 gap-8">';
 
-    async loadBlogScript() {
-        return new Promise((resolve, reject) => {
-            const script = document.createElement('script');
-            script.src = '../../assets/js/blog.js';
-            script.onload = () => {
-                if (typeof blogPosts !== 'undefined') {
-                    this.allPosts = [...blogPosts];
-                    resolve();
-                } else {
-                    reject(new Error('blogPosts not defined'));
-                }
-            };
-            script.onerror = reject;
-            document.head.appendChild(script);
-        });
-    }
-
-
-    generatePrevNextNav() {
-        const currentIndex = this.allPosts.findIndex(post => post.slug === this.currentSlug);
-        
-        if (currentIndex === -1) return;
-
-
-        const prevPost = this.allPosts[currentIndex + 1]; // Next in array is older
-        const nextPost = this.allPosts[currentIndex - 1]; // Previous in array is newer
-
-
-        // Find the navigation container
-        const navContainer = document.querySelector('.post-navigation-container');
-        if (!navContainer) {
-            console.warn('Navigation container not found');
-            return;
-        }
-
-
-        let html = '<div class="grid md:grid-cols-2 gap-8">';
-
-
-        // Previous (older) post
-        if (prevPost) {
-            html += `
+    // Previous (older) post
+    if (prevPost) {
+      html += `
                 <a href="${prevPost.slug}.html" class="group p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-xl transition-all border-2 border-transparent hover:border-green-500">
                     <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-2">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -138,14 +125,13 @@ class BlogPostNavigation {
                     </p>
                 </a>
             `;
-        } else {
-            html += '<div></div>'; // Empty space if no previous post
-        }
+    } else {
+      html += "<div></div>"; // Empty space if no previous post
+    }
 
-
-        // Next (newer) post
-        if (nextPost) {
-            html += `
+    // Next (newer) post
+    if (nextPost) {
+      html += `
                 <a href="${nextPost.slug}.html" class="group p-6 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-xl transition-all text-right border-2 border-transparent hover:border-green-500">
                     <div class="flex items-center justify-end text-sm text-gray-500 dark:text-gray-400 mb-2">
                         <span>Next Post</span>
@@ -161,55 +147,53 @@ class BlogPostNavigation {
                     </p>
                 </a>
             `;
-        }
-
-
-        html += '</div>';
-
-
-        navContainer.innerHTML = html;
     }
 
+    html += "</div>";
 
-    generateRelatedPosts() {
-        const relatedContainer = document.querySelector('.related-posts-container');
-        if (!relatedContainer) {
-            console.warn('Related posts container not found');
-            return;
-        }
+    navContainer.innerHTML = html;
+  }
 
+  generateRelatedPosts() {
+    const relatedContainer = document.querySelector(".related-posts-container");
+    if (!relatedContainer) {
+      console.warn("Related posts container not found");
+      return;
+    }
 
-        // Find related posts by category and tags
-        const relatedPosts = this.findRelatedPosts();
+    // Find related posts by category and tags
+    const relatedPosts = this.findRelatedPosts();
 
+    if (relatedPosts.length === 0) {
+      relatedContainer.innerHTML =
+        '<p class="text-center text-gray-600 dark:text-gray-400">No related posts found.</p>';
+      return;
+    }
 
-        if (relatedPosts.length === 0) {
-            relatedContainer.innerHTML = '<p class="text-center text-gray-600 dark:text-gray-400">No related posts found.</p>';
-            return;
-        }
+    let html = '<div class="grid md:grid-cols-3 gap-8">';
 
+    relatedPosts.slice(0, 3).forEach((post) => {
+      const categoryColors = {
+        sustainability: "bg-green-500",
+        recycling: "bg-blue-500",
+        community: "bg-purple-500",
+        innovation: "bg-red-500",
+        news: "bg-amber-500",
+      };
 
-        let html = '<div class="grid md:grid-cols-3 gap-8">';
+      const categoryColor = categoryColors[post.category] || "bg-gray-500";
 
+      // Fix image path for post page context
+      let imagePath = post.image;
+      if (imagePath.startsWith("../") && !imagePath.startsWith("../../")) {
+        imagePath = "../" + imagePath;
+      }
 
-        relatedPosts.slice(0, 3).forEach(post => {
-            const categoryColors = {
-                sustainability: 'bg-green-500',
-                recycling: 'bg-blue-500',
-                community: 'bg-purple-500',
-                innovation: 'bg-red-500',
-                news: 'bg-amber-500'
-            };
-
-
-            const categoryColor = categoryColors[post.category] || 'bg-gray-500';
-
-
-            html += `
+      html += `
                 <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                     <div class="relative h-48 overflow-hidden">
                         <img 
-                            src="${post.image}" 
+                            src="${imagePath}" 
                             alt="${post.title}"
                             class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                             onerror="this.src='../../assets/images/blog/placeholder.jpg'"
@@ -237,71 +221,67 @@ class BlogPostNavigation {
                     </div>
                 </article>
             `;
-        });
+    });
 
+    html += "</div>";
 
-        html += '</div>';
+    relatedContainer.innerHTML = html;
+  }
 
+  findRelatedPosts() {
+    // Exclude current post
+    const otherPosts = this.allPosts.filter(
+      (post) => post.slug !== this.currentSlug
+    );
 
-        relatedContainer.innerHTML = html;
-    }
+    // Score posts by relevance
+    const scoredPosts = otherPosts.map((post) => {
+      let score = 0;
 
+      // Same category = +5 points
+      if (post.category === this.currentPost.category) {
+        score += 5;
+      }
 
-    findRelatedPosts() {
-        // Exclude current post
-        const otherPosts = this.allPosts.filter(post => post.slug !== this.currentSlug);
+      // Shared tags = +2 points each
+      const sharedTags = post.tags.filter((tag) =>
+        this.currentPost.tags.includes(tag)
+      );
+      score += sharedTags.length * 2;
 
+      // Recent posts = +1 point if within 6 months
+      const postDate = new Date(post.date);
+      const currentDate = new Date(this.currentPost.date);
+      const monthsDiff = Math.abs(
+        (postDate - currentDate) / (1000 * 60 * 60 * 24 * 30)
+      );
+      if (monthsDiff <= 6) {
+        score += 1;
+      }
 
-        // Score posts by relevance
-        const scoredPosts = otherPosts.map(post => {
-            let score = 0;
+      return { post, score };
+    });
 
+    // Sort by score (highest first)
+    scoredPosts.sort((a, b) => b.score - a.score);
 
-            // Same category = +5 points
-            if (post.category === this.currentPost.category) {
-                score += 5;
-            }
-
-
-            // Shared tags = +2 points each
-            const sharedTags = post.tags.filter(tag => 
-                this.currentPost.tags.includes(tag)
-            );
-            score += sharedTags.length * 2;
-
-
-            // Recent posts = +1 point if within 6 months
-            const postDate = new Date(post.date);
-            const currentDate = new Date(this.currentPost.date);
-            const monthsDiff = Math.abs((postDate - currentDate) / (1000 * 60 * 60 * 24 * 30));
-            if (monthsDiff <= 6) {
-                score += 1;
-            }
-
-
-            return { post, score };
-        });
-
-
-        // Sort by score (highest first)
-        scoredPosts.sort((a, b) => b.score - a.score);
-
-
-        // Return top posts (only those with score > 0)
-        return scoredPosts
-            .filter(item => item.score > 0)
-            .map(item => item.post);
-    }
+    // Return top posts (only those with score > 0)
+    return scoredPosts
+      .filter((item) => item.score > 0)
+      .map((item) => item.post);
+  }
 }
 
-
 // Initialize on post pages
-document.addEventListener('DOMContentLoaded', () => {
-    // Check if we're on a blog post page
-    if (document.querySelector('.prose') && window.location.pathname.includes('/posts/')) {
-        setTimeout(() => {
-            const navigation = new BlogPostNavigation();
-            navigation.init();
-        }, 500);
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  // Check if we're on a blog post page
+  if (
+    document.querySelector(".prose") &&
+    window.location.pathname.includes("/posts/")
+  ) {
+    setTimeout(() => {
+      const navigation = new BlogPostNavigation();
+      navigation.init();
+    }, 500);
+  }
 });
